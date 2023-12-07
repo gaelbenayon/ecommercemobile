@@ -3,9 +3,9 @@ import React from 'react'
 
 import Card from './Card'
 
-const CategoryItem = ({category}) => {
+const CategoryItem = ({category,onSelectCategoryEvent}) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=>onSelectCategoryEvent(category)}>
         <Card style={styles.carddContainer}>
             <Text style={styles.cardText}>{category}</Text>
         </Card>
