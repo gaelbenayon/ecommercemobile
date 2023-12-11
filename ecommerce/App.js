@@ -23,10 +23,16 @@ export default function App() {
     )
   }
 
+  const onGoHome = () => {
+    return (
+      setCategorySelected(false)
+    )
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      {categorySelected? <ProductsByCategory category={categorySelected}/>: <Categories onSelectCategoryEvent={onSelectCategory}/>}
+      {categorySelected? <ProductsByCategory category={categorySelected} onGoHomeEvent={onGoHome}/>: <Categories onSelectCategoryEvent={onSelectCategory}/>}
     </View>
   );
 }

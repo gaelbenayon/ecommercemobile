@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 import products_data from '../data/products_data.json'
 import ProductItem from '../components/ProductItem'
 import Search from '../components/Search'
+import Header from '../components/Header'
 
-const ProductsByCategory = ({category}) => {
+const ProductsByCategory = ({category,onGoHomeEvent}) => {
 
   const [productsByCategory,setProductsByCategory] = useState([]);
   const [search,setSearch] = useState('');
@@ -29,7 +30,8 @@ const ProductsByCategory = ({category}) => {
 
   return (
     <>
-    <Search onSearchHandlerEvent={onSearch}/>
+    <Header title="PRODUCTOS"/>
+    <Search onSearchHandlerEvent={onSearch} category={category} onGoHomeEvent={onGoHomeEvent}/>
     <FlatList
       data={productsByCategory}
       renderItem={renderProductItem}

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import { colors } from '../global/colors'
 
@@ -21,11 +21,11 @@ export default ProductItem
 
 const styles = StyleSheet.create({
     productContainer:{
+        flex:1,
         flexDirection:'row',
         justifyContent:'space-between',
         padding:15,
         marginBottom:20,
-        // backgroundColor:'red'
     },
     productTitle:{
         color:colors.primary,
