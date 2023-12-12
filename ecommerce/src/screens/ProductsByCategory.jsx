@@ -1,11 +1,9 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import products_data from '../data/products_data.json'
-import ProductItem from '../components/ProductItem'
-import Search from '../components/Search'
-import Header from '../components/Header'
+import {Header, ProductItem, Search} from '../components'
 
-const ProductsByCategory = ({category,onGoHomeEvent}) => {
+const ProductsByCategory = ({category,onGoHomeEvent,onSelectProductIdEvent}) => {
 
   const [productsByCategory,setProductsByCategory] = useState([]);
   const [search,setSearch] = useState('');
@@ -18,7 +16,7 @@ const ProductsByCategory = ({category,onGoHomeEvent}) => {
 
   const renderProductItem = ({item}) => {
     return (
-      <ProductItem product={item}/>
+      <ProductItem product={item} onSelectProductIdEvent={onSelectProductIdEvent}/>
     )
   }
 
