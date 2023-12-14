@@ -5,10 +5,10 @@ export const styles = StyleSheet.create({
     headerContainer: {
         height: 80,
         backgroundColor: colors.primary,
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: "center",
-        flexDirection:'row',
-        paddingHorizontal:10
+        flexDirection:'row-reverse',
+        paddingHorizontal:14
     },
     headerTitle: {
         fontSize: 30,

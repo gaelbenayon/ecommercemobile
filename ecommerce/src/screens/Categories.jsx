@@ -1,17 +1,16 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import React from 'react'
-import {Header, CategoryItem} from '../components'
+import {CategoryItem} from '../components'
 import categoriesData from "../data/categories_data.json"
 
-const Categories = ({onSelectCategoryEvent}) => {
+const Categories = ({navigation}) => {
 
     const renderCategoryItem = ({item}) => (
-        <CategoryItem category={item} onSelectCategoryEvent={onSelectCategoryEvent}/>
+        <CategoryItem category={item} navigation={navigation}/>
     )
 
   return (
     <>
-    <Header title={"CATEGORÍAS"}/>
     <View style={styles.categoriesContainer}>
         <FlatList
             data={categoriesData}

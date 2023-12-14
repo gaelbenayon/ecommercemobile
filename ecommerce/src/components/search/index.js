@@ -2,10 +2,9 @@ import { TextInput, View, Text, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 import { styles } from './styles';
 
-const Search = ({ onSearchHandlerEvent, category, onGoHomeEvent }) => {
+const Search = ({ onSearchHandlerEvent, category }) => {
 
     const [searchInput, setSearchInput] = useState('');
     const [searchError,setSearchError] = useState('');
@@ -41,9 +40,6 @@ const Search = ({ onSearchHandlerEvent, category, onGoHomeEvent }) => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => onResetSearchHandler()}>
                     <Feather name="delete" size={24} color="black" />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => onGoHomeEvent()}>
-                    <Ionicons name="home-outline" size={24} color="black" />
                 </TouchableOpacity>
             </View>
         </View>
