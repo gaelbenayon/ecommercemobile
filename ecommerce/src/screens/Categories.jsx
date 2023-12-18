@@ -1,7 +1,7 @@
-import { FlatList, StyleSheet, View } from 'react-native'
-import React from 'react'
-import {CategoryItem} from '../components'
-import categoriesData from "../data/categories_data.json"
+import { FlatList, StyleSheet, View } from 'react-native';
+import React from 'react';
+import {CategoryItem} from '../components';
+import categoriesData from "../data/categories_data.json";
 
 const Categories = ({navigation}) => {
 
@@ -22,7 +22,7 @@ const Categories = ({navigation}) => {
   )
 }
 
-export default Categories
+export default Categories;
 
 const styles = StyleSheet.create({
     categoriesContainer: {
