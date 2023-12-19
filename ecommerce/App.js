@@ -1,7 +1,7 @@
-import Navigator from './src/navigation/Navigator';
 import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import {useFonts} from 'expo-font';
+import TabNavigator from './src/navigation/TabNavigator';
 
 export default function App() {
 
@@ -15,7 +15,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Navigator/>
+      <TabNavigator/>
     </View>
   );
 }

@@ -1,5 +1,4 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
 import { Header } from '../components';
 import Categories from '../screens/Categories';
 import ProductsByCategory from '../screens/ProductsByCategory';
@@ -7,16 +6,16 @@ import ProductDetail from '../screens/ProductDetail';
 
 const Stack = createNativeStackNavigator();
 
-const Navigator = () => {
+const ShopNavigator = () => {
     return (
-        <NavigationContainer>
+
             <Stack.Navigator
                 initialRouteName='categories'
                 screenOptions={
                     ({navigation,route}) => ({
                         header: () => <Header 
                         title={
-                            route.name === "categories" ? "Categorías" : route.name === "products" ? route.params.category : "Mi selección"
+                            route.name === "categories" ? "Categorías" : route.name === "products" ? route.params.category : "detail" ? "Mi selección" : "Carrito"
                         } 
                         navigation={navigation}
                         route={route}/>
@@ -41,8 +40,7 @@ const Navigator = () => {
                     options={{title:'Detalle'}}
                 />
             </Stack.Navigator>
-        </NavigationContainer>
     )
 }
 
-export default Navigator;
+export default ShopNavigator;

@@ -7,7 +7,7 @@ const Header = ({ title, navigation, route }) => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerTitle}>{title}</Text>
-      {route.name != "categories" ?
+      {navigation.canGoBack()?
         <TouchableOpacity onPress={navigation.goBack}>
           <Ionicons name="caret-back-sharp" size={24} color="white" />
         </TouchableOpacity> : null

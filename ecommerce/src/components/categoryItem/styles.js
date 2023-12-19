@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
-    carddContainer:{
+    cardContainer:{
         backgroundColor: "#e6e6ea",
         padding: 10,
         margin: 10,
