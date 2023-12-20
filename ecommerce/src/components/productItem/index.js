@@ -1,5 +1,5 @@
-import { Text, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import { Text, TouchableOpacity, Image } from 'react-native';
+import React from 'react';
 import { styles } from './styles';
 
 const ProductItem = ({product,navigation}) => {
@@ -17,4 +17,4 @@ const ProductItem = ({product,navigation}) => {
   )
 }
 
-export default ProductItem
+export default ProductItem;

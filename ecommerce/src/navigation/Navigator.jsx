@@ -1,11 +1,11 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import {NavigationContainer} from '@react-navigation/native'
-import { Header } from '../components'
-import Categories from '../screens/Categories'
-import ProductsByCategory from '../screens/ProductsByCategory'
-import ProductDetail from '../screens/ProductDetail'
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import { Header } from '../components';
+import Categories from '../screens/Categories';
+import ProductsByCategory from '../screens/ProductsByCategory';
+import ProductDetail from '../screens/ProductDetail';
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
     return (
@@ -14,7 +14,12 @@ const Navigator = () => {
                 initialRouteName='categories'
                 screenOptions={
                     ({navigation,route}) => ({
-                        header: () => <Header title={route.name} navigation={navigation}/>
+                        header: () => <Header 
+                        title={
+                            route.name === "categories" ? "Categorías" : route.name === "products" ? route.params.category : "Mi selección"
+                        } 
+                        navigation={navigation}
+                        route={route}/>
                     })
                 }
             >
@@ -40,4 +45,4 @@ const Navigator = () => {
     )
 }
 
-export default Navigator
+export default Navigator;

@@ -1,17 +1,17 @@
-import { ActivityIndicator, StyleSheet, Text, View, Image, useWindowDimensions, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import products_data from '../data/products_data.json'
-import { colors } from '../global/colors'
+import { ActivityIndicator, StyleSheet, Text, View, Image, useWindowDimensions, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import products_data from '../data/products_data.json';
+import { colors } from '../global/colors';
 
 const ProductDetail = ({ route }) => {
 
   const [productSelected, setProductSelected] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [isPortrait, setIsPortrait] = useState(true)
+  const [isPortrait, setIsPortrait] = useState(true);
 
-  const { height, width } = useWindowDimensions()
+  const { height, width } = useWindowDimensions();
 
-  const productIdProp = route.params
+  const productIdProp = route.params;
 
   useEffect(() => {
     height < width ? setIsPortrait(false) : setIsPortrait(true)
@@ -49,7 +49,7 @@ const ProductDetail = ({ route }) => {
   )
 }
 
-export default ProductDetail
+export default ProductDetail;
 
 const styles = StyleSheet.create({
   productTitle: {

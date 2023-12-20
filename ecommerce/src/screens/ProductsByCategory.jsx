@@ -1,7 +1,7 @@
-import { FlatList } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import products_data from '../data/products_data.json'
-import {ProductItem, Search} from '../components'
+import { FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import products_data from '../data/products_data.json';
+import {ProductItem, Search} from '../components';
 
 const ProductsByCategory = ({navigation,route}) => {
 
@@ -40,4 +40,4 @@ const ProductsByCategory = ({navigation,route}) => {
   )
 }
 
-export default ProductsByCategory
+export default ProductsByCategory;

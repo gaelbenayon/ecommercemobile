@@ -1,5 +1,5 @@
-import { TextInput, View, Text, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { TextInput, View, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { styles } from './styles';
@@ -21,8 +21,8 @@ const Search = ({ onSearchHandlerEvent, category }) => {
     }
 
     const onResetSearchHandler = () => {
-        onSearchHandlerEvent('')
-        setSearchInput('')
+        onSearchHandlerEvent('');
+        setSearchInput('');
     }
 
     return (
@@ -50,4 +50,4 @@ const Search = ({ onSearchHandlerEvent, category }) => {
     )
 }
 
-export default Search
+export default Search;

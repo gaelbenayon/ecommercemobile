@@ -1,7 +1,9 @@
+
 import { Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { styles } from './styles'
 import Card from '../card'
+
 
 const CategoryItem = ({category,navigation}) => {
   return (
@@ -13,4 +15,4 @@ const CategoryItem = ({category,navigation}) => {
   )
 }
 
-export default CategoryItem
+export default CategoryItem;
