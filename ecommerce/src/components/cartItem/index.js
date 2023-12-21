@@ -1,18 +1,19 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import Card from '../card'
 
-const CartItem = ({itemProp}) => {
+const CartItem = ({ itemProp }) => {
   return (
-    <Card style={styles.card}>
-        <View>
-            <Text style={styles.cardTitle}>{itemProp.title}</Text>
-            <Text>{itemProp.quantity} unidades</Text>
-            <Text>Total: ${itemProp.price * itemProp.quantity}</Text>
-            <TouchableOpacity style={styles.cardButton} onPress={()=>null}>
-                <Text>Eliminar</Text>
-            </TouchableOpacity>
-        </View>
+    <Card style={styles.cart}>
+      <Image style={styles.cartImage} source={{ uri: itemProp.thumbnail }} resizeMode='cover' />
+      <View>
+        <Text style={styles.cartTitle}>{itemProp.title}</Text>
+        <Text>{itemProp.quantity} unidades</Text>
+        <Text>Total: ${itemProp.price * itemProp.quantity}</Text>
+        <TouchableOpacity style={styles.cartButton} onPress={() => null}>
+          <Text>Eliminar</Text>
+        </TouchableOpacity>
+      </View>
     </Card>
   )
 }
@@ -20,13 +21,20 @@ const CartItem = ({itemProp}) => {
 export default CartItem
 
 const styles = StyleSheet.create({
-    card: {
+  cart: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom:15
+  },
+  cartImage: {
+    height: 50,
+    width: 50,
+    marginRight:20
+  },
+  cartTitle: {
 
-    },
-    cardTitle:{
+  },
+  cartButton: {
 
-    },
-    cardButton:{
-
-    }
+  }
 })

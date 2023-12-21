@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import {useFonts} from 'expo-font';
+import { useFonts } from 'expo-font';
 import TabNavigator from './src/navigation/TabNavigator';
+import { Provider } from 'react-redux';
+import store from './src/store/store';
 
 export default function App() {
 
@@ -10,12 +12,14 @@ export default function App() {
     'Lato-Bold': require('./assets/fonts/Lato-Bold.ttf')
   })
 
-  if (!fontLoaded) return <ActivityIndicator/>
+  if (!fontLoaded) return <ActivityIndicator />
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <TabNavigator/>
+      <Provider store={store}>
+        <TabNavigator />
+      </Provider>
     </View>
   );
 }
@@ -23,7 +27,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:50,
+    paddingTop: 50,
     fontFamily: 'Lato-Regular'
   },
 })
