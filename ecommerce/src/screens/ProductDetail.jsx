@@ -1,27 +1,26 @@
 import { ActivityIndicator, StyleSheet, Text, View, Image, useWindowDimensions, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import products_data from '../data/products_data.json';
 import { colors } from '../global/colors';
+import { useSelector } from 'react-redux';
+import Carousel from '../components/carousel';
 
-const ProductDetail = ({ route }) => {
+const ProductDetail = () => {
 
-  const [productSelected, setProductSelected] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isPortrait, setIsPortrait] = useState(true);
 
   const { height, width } = useWindowDimensions();
 
-  const productIdProp = route.params;
+  const productId = useSelector(state=>state.shopReducer.productIdSelected)
+  const productSelected = useSelector(state=>state.shopReducer.productSelected)
 
   useEffect(() => {
     height < width ? setIsPortrait(false) : setIsPortrait(true)
   }, [height, width])
 
   useEffect(() => {
-    const productFound = products_data.find(product => product.id === productIdProp)
-    setProductSelected(productFound)
     setIsLoading(false)
-  }, [productIdProp])
+  }, [productId])
 
   return (
     <>
@@ -31,10 +30,11 @@ const ProductDetail = ({ route }) => {
             <ScrollView>
               <Text style={styles.productTitle}>{productSelected.title}</Text>
               <Text style={styles.productBrand}>{productSelected.brand}</Text>
-              <Image style={isPortrait ? styles.productImage : styles.productImageLandscape}
+              {/* <Image style={isPortrait ? styles.productImage : styles.productImageLandscape}
                 resizeMode='cover'
                 source={{ uri: productSelected.images[0] }}
-              ></Image>
+              ></Image> */}
+              <Carousel/>
               <View style={styles.detailContainer}>
                 <Text style={styles.productPrice}>${productSelected.price}</Text>
                 <Text style={styles.productDescription}>{productSelected.description}</Text>

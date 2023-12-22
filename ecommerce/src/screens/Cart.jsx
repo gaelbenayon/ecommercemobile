@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import cart_data from '../data/cart_data.json'
-import CartItem from '../components/cartItem'
+import {CartItem} from '../components'
 import { useState, useEffect } from 'react'
 
 const Cart = () => {
@@ -18,7 +18,7 @@ const Cart = () => {
     )
   }
   return (
-    <View style={styles.cardContainer}>
+    <View style={styles.cartContainer}>
       <FlatList
         data={cart_data}
         renderItem={renderCartItem}
@@ -35,7 +35,7 @@ const Cart = () => {
 export default Cart;
 
 const styles = StyleSheet.create({
-  cardButton:{
-  
+  cartContainer:{
+    padding: 10
   }
 })

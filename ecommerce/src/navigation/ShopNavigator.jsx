@@ -15,7 +15,7 @@ const ShopNavigator = () => {
                     ({navigation,route}) => ({
                         header: () => <Header 
                         title={
-                            route.name === "categories" ? "Categorías" : route.name === "products" ? route.params.category : "detail" ? "Mi selección" : "Carrito"
+                            route.name === "categories" ? "Categorías" : route.name === "products" ? route.params.category : "detail" ? "Mi selección" : null
                         } 
                         navigation={navigation}
                         route={route}/>

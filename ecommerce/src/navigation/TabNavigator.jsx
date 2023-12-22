@@ -1,9 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { StyleSheet } from "react-native";
-import { Entypo, AntDesign  } from '@expo/vector-icons'; 
+import { Entypo, AntDesign, FontAwesome5  } from '@expo/vector-icons'; 
 import CartNavigator from "./CartNavigator";
 import ShopNavigator from "./ShopNavigator";
+import OrdersNavigator from "./OrdersNavigator";
 import { colors } from "../global/colors";
 
 const Tab = createBottomTabNavigator();
@@ -33,6 +34,15 @@ const TabNavigator = () => {
                     options={{
                         tabBarIcon: ({focused}) => (
                             <AntDesign name="shoppingcart" size={24} color={focused?"#fff":"#ccc"} />
+                        )
+                    }}
+                />
+                <Tab.Screen
+                    name="OrdersStack"
+                    component={OrdersNavigator}
+                    options={{
+                        tabBarIcon: ({focused}) => (
+                            <FontAwesome5 name="list" size={24} color={focused?"#fff":"#ccc"} />
                         )
                     }}
                 />

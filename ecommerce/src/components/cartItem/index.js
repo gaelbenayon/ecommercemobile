@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import Card from '../card'
+import {styles} from './styles'
 
 const CartItem = ({ itemProp }) => {
   return (
@@ -19,22 +20,3 @@ const CartItem = ({ itemProp }) => {
 }
 
 export default CartItem
-
-const styles = StyleSheet.create({
-  cart: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginBottom:15
-  },
-  cartImage: {
-    height: 50,
-    width: 50,
-    marginRight:20
-  },
-  cartTitle: {
-
-  },
-  cartButton: {
-
-  }
-})
