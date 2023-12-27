@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, Text, View, Image, useWindowDimensions, ScrollView, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { colors } from '../global/colors';
 import { useSelector } from 'react-redux';
@@ -7,19 +7,12 @@ import Carousel from '../components/carousel';
 const ProductDetail = () => {
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isPortrait, setIsPortrait] = useState(true);
 
-  const { height, width } = useWindowDimensions();
-
-  const productId = useSelector(state=>state.shopReducer.productIdSelected)
-  const productSelected = useSelector(state=>state.shopReducer.productSelected)
+  const productId = useSelector(state=>state.shopReducer.productIdSelected);
+  const productSelected = useSelector(state=>state.shopReducer.productSelected);
 
   useEffect(() => {
-    height < width ? setIsPortrait(false) : setIsPortrait(true)
-  }, [height, width])
-
-  useEffect(() => {
-    setIsLoading(false)
+    setIsLoading(false);
   }, [productId])
 
   return (
@@ -30,10 +23,6 @@ const ProductDetail = () => {
             <ScrollView>
               <Text style={styles.productTitle}>{productSelected.title}</Text>
               <Text style={styles.productBrand}>{productSelected.brand}</Text>
-              {/* <Image style={isPortrait ? styles.productImage : styles.productImageLandscape}
-                resizeMode='cover'
-                source={{ uri: productSelected.images[0] }}
-              ></Image> */}
               <Carousel/>
               <View style={styles.detailContainer}>
                 <Text style={styles.productPrice}>${productSelected.price}</Text>
@@ -62,15 +51,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingBottom: 14,
     color: 'grey'
-  },
-  productImage: {
-    width: '100%',
-    minWidth: 300,
-    height: 400
-  },
-  productImageLandscape: {
-    width: 200,
-    height: 200,
   },
   detailContainer:{
     alignItems:'center'

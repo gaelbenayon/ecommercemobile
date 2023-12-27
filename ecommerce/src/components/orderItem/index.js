@@ -1,18 +1,12 @@
 import { FlatList, Image,  Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { styles } from './styles'
-import { useDispatch } from 'react-redux'
-import { setProductIdSelected, setProductSelected } from '../../features/shopSlice'
 
 const OrderItem = ({ orderProp, totalProp, navigation }) => {
-    const dispatch = useDispatch()
+    
     const renderOrderProducts = ({ item }) => (
         <View>
-            <TouchableOpacity style={styles.orderContainer} onPress={() => {
-                dispatch(setProductIdSelected(item.id))
-                dispatch(setProductSelected())
-                navigation.navigate('detail', item.id)
-                }}>
+            <TouchableOpacity style={styles.orderContainer} onPress={null}>
                 <Image
                     style={styles.orderImage}
                     source={{ uri: item.thumbnail }}
@@ -24,6 +18,7 @@ const OrderItem = ({ orderProp, totalProp, navigation }) => {
             </TouchableOpacity>
         </View>
     )
+    
     return (
         <View style={styles.ordersContainer}>
             <View style={styles.orderInfo}>

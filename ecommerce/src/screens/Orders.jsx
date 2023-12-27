@@ -1,8 +1,7 @@
-import { FlatList, StyleSheet, View } from 'react-native'
-import React from 'react'
-import {useSelector} from 'react-redux'
-import {OrderItem} from '../components'
-import orders_data from '../data/orders_data.json'
+import { FlatList, StyleSheet, View } from 'react-native';
+import React from 'react';
+import {OrderItem} from '../components';
+import orders_data from '../data/orders_data.json';
 
 const Orders = ({navigation}) => {
 
@@ -25,7 +24,7 @@ const Orders = ({navigation}) => {
   )
 }
 
-export default Orders
+export default Orders;
 
 const styles = StyleSheet.create({
     ordersContainer:{

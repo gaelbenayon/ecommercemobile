@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const Categories = ({navigation}) => {
 
-    const categories = useSelector(state=>state.shopReducer.categories)
+    const categories = useSelector(state=>state.shopReducer.categories);
 
     const renderCategoryItem = ({item}) => (
         <CategoryItem category={item} navigation={navigation}/>

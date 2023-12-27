@@ -12,11 +12,11 @@ const Search = ({ onSearchHandlerEvent, category }) => {
     const onSearchHandler = () => {
         const regEx = /[^\w\s]/
         if (regEx.test(searchInput)) {
-            setSearchError('Sólo se admiten letras y números')
-            setSearchInput('')
+            setSearchError('Sólo se admiten letras y números');
+            setSearchInput('');
         } else {
-            setSearchError('')
-            onSearchHandlerEvent(searchInput)
+            setSearchError('');
+            onSearchHandlerEvent(searchInput);
         }
     }
 

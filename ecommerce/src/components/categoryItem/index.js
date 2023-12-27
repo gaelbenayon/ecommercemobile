@@ -6,13 +6,15 @@ import { useDispatch } from 'react-redux';
 import { setCategorySelected } from '../../features/shopSlice';
 
 const CategoryItem = ({category,navigation}) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const handleOnSelectCategory = () => {
+    dispatch(setCategorySelected(category));
+    navigation.navigate('products',category);
+  }
+  
   return (
-    <TouchableOpacity onPress={()=>{
-      navigation.navigate('products',{category})
-      dispatch(setCategorySelected(category))
-      }
-      }>
+    <TouchableOpacity onPress={handleOnSelectCategory}>
         <Card style={styles.cardContainer}>
             <Text style={styles.cardText}>{category}</Text>
         </Card>

@@ -1,7 +1,7 @@
-import { Text, View, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
-import Card from '../card'
-import {styles} from './styles'
+import { Text, View, TouchableOpacity, Image } from 'react-native';
+import React from 'react';
+import Card from '../card';
+import {styles} from './styles';
 
 const CartItem = ({ itemProp }) => {
   return (
@@ -19,4 +19,4 @@ const CartItem = ({ itemProp }) => {
   )
 }
 
-export default CartItem
+export default CartItem;

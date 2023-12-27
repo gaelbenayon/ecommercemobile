@@ -20,7 +20,7 @@ export const shopSlice = createSlice({
         setProductIdSelected: (state, action) => {
             state.productIdSelected = action.payload
         },
-        setProductSelected: (state, action) => {
+        setProductSelected: (state) => {
             state.productSelected = state.products.find(item=>item.id === state.productIdSelected)
         }
     }
