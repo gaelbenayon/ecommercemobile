@@ -1,41 +1,53 @@
-import { FlatList } from 'react-native';
+import { ActivityIndicator, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import {ProductItem, Search} from '../components';
-import { useSelector} from 'react-redux';
+import { ProductItem, Search } from '../components';
+import { useSelector } from 'react-redux';
+import { useGetProductsByCategoryQuery } from '../services/shopService';
 
-const ProductsByCategory = ({navigation}) => {
+const ProductsByCategory = ({ navigation }) => {
 
-  const [productsByCategory,setProductsByCategory] = useState([]);
-  const [search,setSearch] = useState('');
+  const [productsByCategory, setProductsByCategory] = useState([]);
+  const [search, setSearch] = useState('');
 
-  const categorySelected = useSelector(state=>state.shopReducer.categorySelected);
-  const productsFilteredByCategory = useSelector(state=>state.shopReducer.productsFilteredByCategory);
+  const categorySelected = useSelector(state => state.shopReducer.categorySelected);
+
+  const { data, isLoading, error } = useGetProductsByCategoryQuery(categorySelected)
 
   useEffect(() => {
-    const productsFiltered = productsFilteredByCategory.filter(product => product.title.toLowerCase().includes(search.toLowerCase()));
-    setProductsByCategory(productsFiltered);
-  },[categorySelected,search])
+    if (!isLoading) {
+      const productsValues = Object.values(data)
+      const productsFiltered = productsValues.filter(
+        product => product.title.toLowerCase().includes(search.toLowerCase()))
+      setProductsByCategory(productsFiltered)
+    }
+  }, [isLoading, categorySelected, search])
 
-  const renderProductItem = ({item}) => {
+  const renderProductItem = ({ item }) => {
     return (
-      <ProductItem product={item} navigation={navigation}/>
+      <ProductItem product={item} navigation={navigation} />
     )
   }
 
   const onSearch = (search) => {
-    return(
+    return (
       setSearch(search)
     )
   }
 
   return (
     <>
-    <Search onSearchHandlerEvent={onSearch} category={categorySelected}/>
-    <FlatList
-      data={productsByCategory}
-      renderItem={renderProductItem}
-      keyExtractor={item=>item.id}
-    />
+      {
+        isLoading ?
+          <ActivityIndicator /> :
+          <>
+            <Search onSearchHandlerEvent={onSearch} category={categorySelected} />
+            <FlatList
+              data={productsByCategory}
+              renderItem={renderProductItem}
+              keyExtractor={item => item.id}
+            />
+          </>
+      }
     </>
   )
 }
