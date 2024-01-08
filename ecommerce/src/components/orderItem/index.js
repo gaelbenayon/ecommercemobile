@@ -2,7 +2,7 @@ import { FlatList, Image,  Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { styles } from './styles'
 
-const OrderItem = ({ orderProp, totalProp, navigation }) => {
+const OrderItem = ({ orderProp, navigation }) => {
     
     const renderOrderProducts = ({ item }) => (
         <View>
@@ -23,12 +23,12 @@ const OrderItem = ({ orderProp, totalProp, navigation }) => {
         <View style={styles.ordersContainer}>
             <View style={styles.orderInfo}>
                 <Text>Órden: #{orderProp.id}</Text>
-                <Text>Total: ${totalProp}</Text>
-                <Text>Realizada el {new Date(orderProp.createdAt).toLocaleDateString()}</Text>
+                <Text>Total: ${orderProp.total}</Text>
+                <Text>Realizada el {orderProp.date}</Text>
             </View>
 
             <FlatList
-                data={orderProp.items}
+                data={orderProp.cartItems}
                 renderItem={renderOrderProducts}
                 key={item => item.id}
             />

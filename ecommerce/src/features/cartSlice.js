@@ -4,7 +4,7 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         user: 'userLogged',
-        updatedAt: Date.now().toLocaleString(),
+        date: null,
         total: 0,
         items: []
     },
@@ -12,14 +12,14 @@ export const cartSlice = createSlice({
         addItem: (state,action) => {
             const isProductInCart = state.items.find(item=>item.id === action.payload.id)
 
-            if (isProductInCart) {
+            if (!isProductInCart) {
                 state.items.push(action.payload)
                 const total = state.items.reduce((acc,currentItem) => acc+= currentItem.price*currentItem.quantity,0)
                 state.total = total
                 state = {
                     ...state,
                     total,
-                    updatedAt:Date.now().toLocaleString()
+                    date:Date.now().toLocaleString()
                 }
             } else {
                 const itemsUpdated = state.items.map(item=>{
@@ -35,12 +35,19 @@ export const cartSlice = createSlice({
                     ...state,
                     items: itemsUpdated,
                     total,
-                    updatedAt: Date.now().toLocaleString()
+                    date: Date.now().toLocaleString()
                 }
             }
+        },
+        removeItem: (state,action) => {
+
+        },
+        clearCart: (state,action) => {
+            state.items = [],
+            state.total = 0
         }
     }
 })
 
-export const {addItem} = cartSlice.actions
+export const {addItem,removeItem,clearCart} = cartSlice.actions
 export default cartSlice.reducer

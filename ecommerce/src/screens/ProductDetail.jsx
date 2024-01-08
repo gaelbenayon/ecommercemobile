@@ -1,12 +1,15 @@
 import { ActivityIndicator, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { colors } from '../global/colors';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Carousel from '../components/carousel';
+import { addItem } from '../features/cartSlice';
 
 const ProductDetail = () => {
 
   const [isLoading, setIsLoading] = useState(true);
+
+  const dispatch = useDispatch();
 
   const productId = useSelector(state=>state.shopReducer.productIdSelected);
   const productSelected = useSelector(state=>state.shopReducer.productSelected);
@@ -14,6 +17,10 @@ const ProductDetail = () => {
   useEffect(() => {
     setIsLoading(false);
   }, [productId])
+
+  const onAddToCartHandler = () => {
+    dispatch(addItem({...productSelected,quantity:1}))
+  }
 
   return (
     <>
@@ -27,8 +34,8 @@ const ProductDetail = () => {
               <View style={styles.detailContainer}>
                 <Text style={styles.productPrice}>${productSelected.price}</Text>
                 <Text style={styles.productDescription}>{productSelected.description}</Text>
-                <TouchableOpacity style={styles.buyButton} onPress={() => null}>
-                  <Text style={styles.textButton}>Comprar</Text>
+                <TouchableOpacity style={styles.buyButton} onPress={onAddToCartHandler}>
+                  <Text style={styles.textButton}>Agregar al carrito</Text>
                 </TouchableOpacity>
               </View>
             </ScrollView>

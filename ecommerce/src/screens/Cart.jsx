@@ -1,25 +1,23 @@
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import React from 'react';
-// import cart_data from '../data/cart_data.json';
 import {CartItem} from '../components';
-// import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { usePostOrderMutation } from '../services/shopService';
+import { clearCart } from '../features/cartSlice';
 
-const Cart = () => {
-  // const [cartTotal, setCartTotal] = useState();
+const Cart = ({navigation}) => {
 
-  // useEffect(() => {
-  //   const total = cart_data.reduce((accumulator, currentItem) => (accumulator += (currentItem.price * currentItem.quantity)), 0);
-  //   setCartTotal(total);
-  // }, [])
+  const cartItems = useSelector(state=>state.cartReducer.items);
+  const total = useSelector(state=>state.cartReducer.total);
+  const date = useSelector(state=>state.cartReducer.date);
 
-  const cartItems = useSelector(state=>state.cartReducer.items)
-  const total = useSelector(state=>state.cartReducer.total)
-  const [triggerPost,result] = usePostOrderMutation()
-
+  const dispatch = useDispatch();
+  
+  const [triggerPost,result] = usePostOrderMutation();
   const confirmCart = () => {
-    triggerPost({total,cartItems,user:'Logged User'})
+    triggerPost({total,cartItems,date,user:'LoggedUser'})
+    dispatch(clearCart())
+    navigation.navigate('orders')
   }
 
   const renderCartItem = ({ item }) => {

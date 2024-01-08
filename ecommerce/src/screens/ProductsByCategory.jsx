@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList } from 'react-native';
+import { ActivityIndicator, FlatList, Text } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { ProductItem, Search } from '../components';
 import { useSelector } from 'react-redux';
@@ -11,11 +11,11 @@ const ProductsByCategory = ({ navigation }) => {
 
   const categorySelected = useSelector(state => state.shopReducer.categorySelected);
 
-  const { data, isLoading, error } = useGetProductsByCategoryQuery(categorySelected)
+  const { data: productsFilteredByCategory, isLoading, error } = useGetProductsByCategoryQuery(categorySelected)
 
   useEffect(() => {
     if (!isLoading) {
-      const productsValues = Object.values(data)
+      const productsValues = Object.values(productsFilteredByCategory)
       const productsFiltered = productsValues.filter(
         product => product.title.toLowerCase().includes(search.toLowerCase()))
       setProductsByCategory(productsFiltered)

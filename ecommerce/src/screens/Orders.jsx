@@ -1,33 +1,54 @@
-import { FlatList, StyleSheet, View } from 'react-native';
-import React from 'react';
-import {OrderItem} from '../components';
-import orders_data from '../data/orders_data.json';
+import { ActivityIndicator, FlatList, StyleSheet, View, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { OrderItem } from '../components';
+import { useGetOrdersQuery } from '../services/shopService';
 
-const Orders = ({navigation}) => {
+const Orders = ({ navigation }) => {
 
-    const renderOrderItem = ({item}) => {
-        const total = item.items.reduce((accumulator, currentItem) => (
-            accumulator += currentItem.price*currentItem.quantity
-          ),0)
-        return (
-        <OrderItem orderProp={item} totalProp={total} navigation={navigation}/>)
+  const [orders, setOrders] = useState([]);
+
+  const { data: ordersData, isLoading, error } = useGetOrdersQuery();
+
+  useEffect(() => {
+    if (!isLoading && ordersData) {
+      const ordersValues = Object.values(ordersData)
+      setOrders(ordersValues)
     }
-    
+  }, [isLoading,ordersData])
+
+  const renderOrderItem = ({ item }) => {
+    return (
+      <OrderItem orderProp={item} navigation={navigation}/>
+    )
+  }
+
   return (
-    <View style={styles.ordersContainer}>
-      <FlatList
-        data={orders_data}
-        renderItem={renderOrderItem}
-        keyExtractor={item=>item.id}
-      />
-    </View>
+    <>
+      {
+        isLoading ?
+          <ActivityIndicator /> :
+          error ?
+          <Text>Error al obtener las órdenes</Text> :
+          orders.length < 1 ?
+          <Text>No hay órdenes realizadas</Text> :
+          <>
+            <View style={styles.ordersContainer}>
+              <FlatList
+                data={orders}
+                renderItem={renderOrderItem}
+                keyExtractor={item => item.id}
+              />
+            </View>
+          </>
+      }
+    </>
   )
 }
 
 export default Orders;
 
 const styles = StyleSheet.create({
-    ordersContainer:{
-        padding:10
-    }
+  ordersContainer: {
+    padding: 10
+  }
 })
