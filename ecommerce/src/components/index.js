@@ -5,3 +5,4 @@ export {default as ProductItem} from './productItem';
 export {default as Search} from './search';
 export {default as OrderItem} from './orderItem'
 export {default as CartItem} from './cartItem'
+export {default as Input} from './input'
