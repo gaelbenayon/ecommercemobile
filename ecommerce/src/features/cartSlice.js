@@ -4,7 +4,7 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         user: 'userLogged',
-        date: null,
+        date: Date.now(),
         total: 0,
         items: []
     },
@@ -19,7 +19,6 @@ export const cartSlice = createSlice({
                 state = {
                     ...state,
                     total,
-                    date:Date.now().toLocaleString()
                 }
             } else {
                 const itemsUpdated = state.items.map(item=>{
@@ -35,7 +34,7 @@ export const cartSlice = createSlice({
                     ...state,
                     items: itemsUpdated,
                     total,
-                    date: Date.now().toLocaleString()
+                    date: action.payload.date
                 }
             }
         },

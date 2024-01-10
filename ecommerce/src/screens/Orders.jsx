@@ -10,7 +10,7 @@ const Orders = ({ navigation }) => {
   const { data: ordersData, isLoading, error } = useGetOrdersQuery();
 
   useEffect(() => {
-    if (!isLoading && ordersData) {
+    if (!isLoading) {
       const ordersValues = Object.values(ordersData)
       setOrders(ordersValues)
     }
