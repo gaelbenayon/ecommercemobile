@@ -5,6 +5,7 @@ import CartNavigator from "./CartNavigator";
 import ShopNavigator from "./ShopNavigator";
 import OrdersNavigator from "./OrdersNavigator";
 import { colors } from "../global/colors";
+import ProfileNavigator from "./ProfileNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -41,6 +42,15 @@ const TabNavigator = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <FontAwesome5 name="list" size={24} color={focused ? "#fff" : "#ccc"} />
+                    )
+                }}
+            />
+            <Tab.Screen
+                name="ProfileStack"
+                component={ProfileNavigator}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <FontAwesome5 name="user" size={24} color={focused ? "#fff" : "#ccc"} />
                     )
                 }}
             />

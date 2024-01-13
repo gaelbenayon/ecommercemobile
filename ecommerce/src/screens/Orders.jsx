@@ -14,7 +14,7 @@ const Orders = ({ navigation }) => {
       const ordersValues = Object.values(ordersData)
       setOrders(ordersValues)
     }
-  }, [isLoading,ordersData])
+  }, [isLoading, ordersData])
 
   const renderOrderItem = ({ item }) => {
     return (

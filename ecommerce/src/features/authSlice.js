@@ -5,6 +5,8 @@ export const authSlice = createSlice({
     initialState: {
         user: null,
         token: null,
+        profilePicture: null,
+        localId: null
     },
     reducers: {
         setUser: (state, action) => {
