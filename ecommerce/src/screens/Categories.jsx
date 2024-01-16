@@ -1,12 +1,9 @@
-import { FlatList, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import React from 'react';
 import {CategoryItem} from '../components';
-// import { useSelector } from 'react-redux';
 import { useGetCategoriesQuery } from '../services/shopService';
 
 const Categories = ({navigation}) => {
-
-    // const categories = useSelector(state=>state.shopReducer.categories);
 
     const {data,isLoading,error} = useGetCategoriesQuery()
 
@@ -17,11 +14,17 @@ const Categories = ({navigation}) => {
   return (
     <>
     <View style={styles.categoriesContainer}>
-        <FlatList
+        {
+            isLoading?
+            <ActivityIndicator/> :
+            data ? 
+            <FlatList
             data={data}
             renderItem={renderCategoryItem}
             keyExtractor={item=>item}
-        />
+            /> :
+            null
+        }
     </View>
     </>
   )

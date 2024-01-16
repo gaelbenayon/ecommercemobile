@@ -1,6 +1,7 @@
 import { FlatList, Image,  Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { styles } from './styles'
+import Separator from '../separator'
 
 const OrderItem = ({ orderProp, navigation }) => {
     
@@ -22,9 +23,9 @@ const OrderItem = ({ orderProp, navigation }) => {
     return (
         <View style={styles.ordersContainer}>
             <View style={styles.orderInfo}>
-                <Text>Órden: #{orderProp.id}</Text>
+                <Text>Órden: {orderProp.orderId}</Text>
+                <Text>Realizada el {orderProp.date}</Text>
                 <Text>Total: ${orderProp.total}</Text>
-                <Text>Realizada el {Date(orderProp.date).toLocaleString()}</Text>
             </View>
 
             <FlatList
@@ -32,6 +33,7 @@ const OrderItem = ({ orderProp, navigation }) => {
                 renderItem={renderOrderProducts}
                 key={item => item.id}
             />
+            <Separator/>
         </View>
     )
 }

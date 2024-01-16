@@ -4,9 +4,9 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         user: 'userLogged',
-        date: Date.now(),
+        date: new Date().toLocaleDateString(),
         total: 0,
-        items: []
+        items: [],
     },
     reducers:{
         addItem: (state,action) => {

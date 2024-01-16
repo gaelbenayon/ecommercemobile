@@ -5,8 +5,6 @@ export const styles = StyleSheet.create({
         marginBottom: 15
     },
     orderInfo: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
         marginBottom: 10
     },
     orderContainer: {
