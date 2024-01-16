@@ -5,8 +5,8 @@ export const ordersApi = createApi({
     reducerPath:"ordersApi",
     baseQuery: fetchBaseQuery({baseUrl: base_url}),
     endpoints: (builder) => ({
-        getOrders: builder.query({
-            query: () => 'orders.json'
+        getOrdersByUser: builder.query({
+            query: (user) => `orders.json?orderBy="user"&equalTo="${user}"`
         }),
         postOrder: builder.mutation({
             query: ({...order}) => ({
@@ -18,4 +18,4 @@ export const ordersApi = createApi({
     })
 })
 
-export const {useGetOrdersQuery,usePostOrderMutation} = ordersApi;
+export const {useGetOrdersByUserQuery,usePostOrderMutation} = ordersApi;

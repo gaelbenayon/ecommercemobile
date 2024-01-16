@@ -1,7 +1,7 @@
 import { ActivityIndicator, FlatList, StyleSheet, View, Text } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { OrderItem } from '../components';
-import { useGetOrdersQuery } from '../services/ordersService';
+import { useGetOrdersByUserQuery } from '../services/ordersService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLocalOrders } from '../features/ordersSlice';
 
@@ -11,9 +11,11 @@ const Orders = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
-  const localOrders = useSelector(state=>state.ordersReducer.orders)
+  const user = useSelector(state=>state.authReducer.user);
 
-  const { data: ordersData, isLoading, error } = useGetOrdersQuery();
+  const localOrders = useSelector(state=>state.ordersReducer.orders);
+
+  const { data: ordersData, isLoading, error } = useGetOrdersByUserQuery(user);
 
   useEffect(() => {
     if (!isLoading && ordersData) {
