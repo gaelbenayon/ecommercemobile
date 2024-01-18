@@ -27,10 +27,12 @@ const Orders = ({ navigation }) => {
       setOrders(ordersWithId)
       dispatch(setLocalOrders(ordersWithId))
     }
-  }, [isLoading, ordersData])
+  }, [isLoading, ordersData,user])
 
   useEffect(()=>{
-    setOrders(localOrders)
+    if (localOrders =! orders) {
+      setOrders(localOrders)
+    }
   },[localOrders])
 
   const renderOrderItem = ({ item }) => {
@@ -39,13 +41,16 @@ const Orders = ({ navigation }) => {
     )
   }
 
+  if (error) {
+    console.log("Error: ", error);
+    return <Text>Error al obtener las órdenes</Text>
+  }
+
   return (
     <>
       {
         isLoading ?
           <ActivityIndicator /> :
-          error ?
-          <Text>Error al obtener las órdenes</Text> :
           orders.length < 1 ?
           <Text>No hay órdenes realizadas</Text> :
           <>

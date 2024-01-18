@@ -12,6 +12,7 @@ const OrderItem = ({ orderProp, navigation }) => {
                     style={styles.orderImage}
                     source={{ uri: item.thumbnail }}
                 />
+                {console.log(item)}
                 <View>
                     <Text>{item.title}</Text>
                     <Text>{item.quantity} x ${item.price}</Text>
