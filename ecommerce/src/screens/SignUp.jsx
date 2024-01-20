@@ -12,11 +12,16 @@ const SignUp = ({navigation}) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
+  const [error, setError] = useState("");
 
   const [triggerSignUp,result] = useSignUpMutation();
 
   const onSubmitRegisterHandler = () => {
-    triggerSignUp({ email, password })
+    if (email, password, confirmPassword) {
+      triggerSignUp({ email, password })
+    } else {
+      setError("Completá todos los campos antes de continuar")
+    }
   }
 
   const dispatch = useDispatch();
@@ -41,6 +46,7 @@ const SignUp = ({navigation}) => {
       onChange={setConfirmPassword}
       isSecureEntry={true}
       />
+      {error && <Text style={styles.errorText}>{error}</Text>}
       <TouchableOpacity onPress={onSubmitRegisterHandler}>
         <Text style={styles.registerSubmit}>Registrarme</Text>
       </TouchableOpacity>
@@ -71,5 +77,9 @@ const styles = StyleSheet.create({
   loginText:{
     textAlign:'center',
     color:colors.primary
+  },
+  errorText: {
+    color: 'red',
+    paddingTop: 20
   }
 })

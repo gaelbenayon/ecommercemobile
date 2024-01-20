@@ -11,7 +11,7 @@ const ProductsByCategory = ({ navigation }) => {
 
   const categorySelected = useSelector(state => state.shopReducer.categorySelected);
 
-  const { data: productsFilteredByCategory, isLoading, error } = useGetProductsByCategoryQuery(categorySelected)
+  const { data: productsFilteredByCategory, isLoading, error } = useGetProductsByCategoryQuery(categorySelected);
 
   useEffect(() => {
     if (!isLoading) {

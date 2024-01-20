@@ -3,10 +3,14 @@ import { Header } from '../components';
 import Categories from '../screens/Categories';
 import ProductsByCategory from '../screens/ProductsByCategory';
 import ProductDetail from '../screens/ProductDetail';
+import { useSelector } from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
 const ShopNavigator = () => {
+
+    const categorySelected = useSelector(state => state.shopReducer.categorySelected);
+
     return (
 
             <Stack.Navigator
@@ -15,7 +19,7 @@ const ShopNavigator = () => {
                     ({navigation,route}) => ({
                         header: () => <Header 
                         title={
-                            route.name === "categories" ? "Categorías" : route.name === "products" ? route.params.category : "detail" ? "Mi selección" : null
+                            route.name === "categories" ? "Categorías" : route.name === "products" ? categorySelected : "detail" ? "Mi selección" : null
                         } 
                         navigation={navigation}
                         route={route}/>

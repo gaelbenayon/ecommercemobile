@@ -4,7 +4,8 @@ import { colors } from "../../global/colors";
 export const styles = StyleSheet.create({
     labelText:{
         textAlign:'center',
-        paddingTop:5
+        paddingBottom: 5,
+        paddingTop: 10,
     },
     textInput:{
         backgroundColor:colors.primary,

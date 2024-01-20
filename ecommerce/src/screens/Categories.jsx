@@ -3,7 +3,7 @@ import React from 'react';
 import {CategoryItem} from '../components';
 import { useGetCategoriesQuery } from '../services/shopService';
 
-const Categories = ({navigation}) => {
+const Categories = ({navigation,route}) => {
 
     const {data,isLoading,error} = useGetCategoriesQuery()
 

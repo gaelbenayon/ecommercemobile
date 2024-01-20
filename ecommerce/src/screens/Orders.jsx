@@ -11,9 +11,9 @@ const Orders = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
-  const user = useSelector(state=>state.authReducer.user);
+  const user = useSelector(state => state.authReducer.user);
 
-  const localOrders = useSelector(state=>state.ordersReducer.orders);
+  const localOrders = useSelector(state => state.ordersReducer.orders);
 
   const { data: ordersData, isLoading, error } = useGetOrdersByUserQuery(user);
 
@@ -21,23 +21,23 @@ const Orders = ({ navigation }) => {
     if (!isLoading && ordersData) {
       const ordersValues = Object.values(ordersData)
       const ordersKeys = Object.keys(ordersData)
-      const ordersWithId = ordersValues.map((order,index) => {
-        return ({...order,orderId: ordersKeys[index]})
+      const ordersWithId = ordersValues.map((order, index) => {
+        return ({ ...order, orderId: ordersKeys[index] })
       })
       setOrders(ordersWithId)
       dispatch(setLocalOrders(ordersWithId))
     }
-  }, [isLoading, ordersData,user])
+  }, [isLoading, ordersData, user])
 
-  useEffect(()=>{
-    if (localOrders =! orders) {
+  useEffect(() => {
+    if (localOrders !== orders) {
       setOrders(localOrders)
     }
-  },[localOrders])
+  }, [localOrders])
 
   const renderOrderItem = ({ item }) => {
     return (
-      <OrderItem orderProp={item} navigation={navigation}/>
+      <OrderItem orderProp={item} navigation={navigation} />
     )
   }
 
@@ -47,29 +47,28 @@ const Orders = ({ navigation }) => {
   }
 
   return (
-    <>
+    <View style={styles.ordersContainer}>
       {
         isLoading ?
           <ActivityIndicator /> :
           orders.length < 1 ?
-          <Text>No hay órdenes realizadas</Text> :
-          <>
-            <View style={styles.ordersContainer}>
-              <FlatList
-                data={orders}
-                renderItem={renderOrderItem}
-                keyExtractor={item => item.orderId}
-              />
-            </View>
-          </>
+            <Text>No hay órdenes realizadas</Text> :
+            <FlatList
+              data={orders}
+              renderItem={renderOrderItem}
+              keyExtractor={item => item.orderId}
+            />
       }
-    </>
+    </View>
   )
 }
 
 export default Orders;
 
 const styles = StyleSheet.create({
+  noOrdersText: {
+    padding: 10
+  },
   ordersContainer: {
     padding: 10
   }

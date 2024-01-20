@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Header } from "../components";
 import Profile from "../screens/Profile";
+import ImageSelector from "../screens/ImageSelector";
 
 const Stack = createNativeStackNavigator()
 
@@ -11,7 +12,9 @@ const ProfileNavigator = () => {
                 screenOptions={
                     ({navigation,route}) => ({
                         header: () => <Header 
-                        title={'Perfil'} 
+                        title={
+                            route.name === "profile" ? "PERFIL" : "EDITAR PERFIL"
+                        } 
                         navigation={navigation}
                         route={route}/>
                     })
@@ -22,6 +25,13 @@ const ProfileNavigator = () => {
                     component={Profile}
                     options={{
                         title:'Perfil',
+                    }}
+                />
+                <Stack.Screen
+                    name={'imageSelector'}
+                    component={ImageSelector}
+                    options={{
+                        title:'Seleccionar imagen'
                     }}
                 />
             </Stack.Navigator>
