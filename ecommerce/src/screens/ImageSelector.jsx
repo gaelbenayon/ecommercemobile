@@ -13,7 +13,6 @@ const ImageSelector = ({ navigation }) => {
     const [triggerPutPicture, result] = usePutProfilePictureMutation();
 
     const localId = useSelector(state => state.authReducer.localId);
-
     const localImage = useSelector(state => state.authReducer.profilePicture);
 
     const dispatch = useDispatch();

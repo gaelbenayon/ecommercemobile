@@ -17,9 +17,6 @@ const MainNavigator = () => {
     useEffect(()=>{
         if (data && !isLoading) {
             dispatch(setUserProfilePicture(data.image))
-            console.log("cambio de user");
-            console.log(localId);
-            console.log(user);
         }
     },[data,user,localId])
 

@@ -12,26 +12,25 @@ const Orders = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.authReducer.user);
-
   const localOrders = useSelector(state => state.ordersReducer.orders);
 
   const { data: ordersData, isLoading, error } = useGetOrdersByUserQuery(user);
 
   useEffect(() => {
     if (!isLoading && ordersData) {
-      const ordersValues = Object.values(ordersData)
-      const ordersKeys = Object.keys(ordersData)
+      const ordersValues = Object.values(ordersData);
+      const ordersKeys = Object.keys(ordersData);
       const ordersWithId = ordersValues.map((order, index) => {
         return ({ ...order, orderId: ordersKeys[index] })
       })
-      setOrders(ordersWithId)
-      dispatch(setLocalOrders(ordersWithId))
+      setOrders(ordersWithId);
+      dispatch(setLocalOrders(ordersWithId));
     }
   }, [isLoading, ordersData, user])
 
   useEffect(() => {
     if (localOrders !== orders) {
-      setOrders(localOrders)
+      setOrders(localOrders);
     }
   }, [localOrders])
 

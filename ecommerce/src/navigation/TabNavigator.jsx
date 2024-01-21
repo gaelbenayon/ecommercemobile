@@ -1,4 +1,4 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import { Entypo, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import CartNavigator from "./CartNavigator";

@@ -19,7 +19,7 @@ const ProductDetail = () => {
   }, [productId])
 
   const onAddToCartHandler = () => {
-    dispatch(addItem({...productSelected,quantity:1}))
+    dispatch(addItem({...productSelected,quantity:1}));
   }
 
   return (

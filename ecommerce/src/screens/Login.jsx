@@ -13,13 +13,14 @@ const Login = ({ navigation }) => {
 
   const [triggerLogIn, result] = useLogInMutation();
 
+  const dispatch = useDispatch();
+
   const onSubmitLogInHandler = () => {
     triggerLogIn({ email, password });
   }
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    result.data && dispatch(setUser(result.data))
+    result.data && dispatch(setUser(result.data));
   }, [result])
 
   return (

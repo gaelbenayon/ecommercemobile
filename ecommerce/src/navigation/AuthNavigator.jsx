@@ -3,7 +3,7 @@ import { Header } from "../components";
 import SignUp from "../screens/SignUp";
 import Login from "../screens/Login";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 const AuthNavigator = () => {
     return (

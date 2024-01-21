@@ -5,7 +5,7 @@ import { useGetCategoriesQuery } from '../services/shopService';
 
 const Categories = ({navigation,route}) => {
 
-    const {data,isLoading,error} = useGetCategoriesQuery()
+    const {data,isLoading,error} = useGetCategoriesQuery();
 
     const renderCategoryItem = ({item}) => (
         <CategoryItem category={item} navigation={navigation}/>

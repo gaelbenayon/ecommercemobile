@@ -4,17 +4,21 @@ export const styles = StyleSheet.create({
     cart: {
       display: 'flex',
       flexDirection: 'row',
-      marginBottom:15
+      marginBottom:15,
+      gap: 20
     },
     cartImage: {
       height: 50,
       width: 50,
       marginRight:20
     },
-    cartTitle: {
-  
+    infoContainer:{
+      gap: 3
     },
-    cartButton: {
-  
+    cartTitle: {
+      fontWeight: 'bold'
+    },
+    deleteButton: {
+      color: 'grey'
     }
   })

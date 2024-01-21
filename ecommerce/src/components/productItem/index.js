@@ -7,14 +7,14 @@ import { setProductIdSelected, setProductSelected } from '../../features/shopSli
 const ProductItem = ({product,navigation}) => {
   const dispatch = useDispatch();
 
-  const handleOnSelectProduct = () => {
+  const onSelectProductHandler = () => {
     dispatch(setProductIdSelected(product.id));
     dispatch(setProductSelected());
-    navigation.navigate('detail',product.id);
+    navigation.navigate('detail');
   }
 
   return (
-    <TouchableOpacity style={styles.productContainer} onPress={handleOnSelectProduct}>
+    <TouchableOpacity style={styles.productContainer} onPress={onSelectProductHandler}>
         <Image 
             style={styles.productImage}
             resizeMode={'cover'}

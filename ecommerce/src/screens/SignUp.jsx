@@ -18,9 +18,9 @@ const SignUp = ({navigation}) => {
 
   const onSubmitRegisterHandler = () => {
     if (email, password, confirmPassword) {
-      triggerSignUp({ email, password })
+      triggerSignUp({ email, password });
     } else {
-      setError("Completá todos los campos antes de continuar")
+      setError("Completá todos los campos antes de continuar");
     }
   }
 
@@ -60,7 +60,7 @@ const SignUp = ({navigation}) => {
   )
 }
 
-export default SignUp
+export default SignUp;
 
 const styles = StyleSheet.create({
   signUpContainer:{

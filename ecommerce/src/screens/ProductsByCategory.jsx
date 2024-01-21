@@ -14,11 +14,10 @@ const ProductsByCategory = ({ navigation }) => {
   const { data: productsFilteredByCategory, isLoading, error } = useGetProductsByCategoryQuery(categorySelected);
 
   useEffect(() => {
-    if (!isLoading) {
-      const productsValues = Object.values(productsFilteredByCategory)
-      const productsFiltered = productsValues.filter(
-        product => product.title.toLowerCase().includes(search.toLowerCase()))
-      setProductsByCategory(productsFiltered)
+    if (!isLoading && productsFilteredByCategory) {
+      const productsValues = Object.values(productsFilteredByCategory);
+      const productsFiltered = productsValues.filter(product => product.title.toLowerCase().includes(search.toLowerCase()));
+      setProductsByCategory(productsFiltered);
     }
   }, [isLoading, categorySelected, search])
 

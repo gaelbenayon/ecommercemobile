@@ -7,13 +7,12 @@ import { Ionicons } from '@expo/vector-icons';
 const Profile = ({ navigation }) => {
 
     const localImage = useSelector(state => state.authReducer.profilePicture);
-
     const user = useSelector(state => state.authReducer.user);
 
     const dispatch = useDispatch();
 
     const onLogOutHandler = () => {
-        dispatch(logOutUser())
+        dispatch(logOutUser());
     }
 
     return (

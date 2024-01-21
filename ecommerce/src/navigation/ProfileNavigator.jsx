@@ -3,7 +3,7 @@ import { Header } from "../components";
 import Profile from "../screens/Profile";
 import ImageSelector from "../screens/ImageSelector";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 const ProfileNavigator = () => {
     return (
