@@ -9,6 +9,7 @@ import { usePutProfilePictureMutation } from '../services/profileService';
 const ImageSelector = ({ navigation }) => {
 
     const [image, setImage] = useState("");
+    const [error, setError] = useState("");
 
     const [triggerPutPicture, result] = usePutProfilePictureMutation();
 
@@ -28,8 +29,12 @@ const ImageSelector = ({ navigation }) => {
                 quality: 0.3
             })
             if (!result.canceled) {
-                setImage(`data:image/jpeg;base64,${result.assets[0].base64}`)
+                setImage(`data:image/jpeg;base64,${result.assets[0].base64}`);
+            } else {
+                setError("La operación fue cancelada");
             }
+        } else {
+            setError("Los permisos de la cámara no fueron otorgados");
         }
     }
 
@@ -66,6 +71,7 @@ const ImageSelector = ({ navigation }) => {
                                 <Text>Guardar cambios</Text>
                             </TouchableOpacity>
                         </View>
+                        {error && <Text style={styles.errorText}>{error}</Text>}
                     </View> :
                     <View>
                         <MaterialIcons name='no-photography' size={200} color='black' />
@@ -100,5 +106,9 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 20,
         alignSelf: 'center'
+    },
+    errorText:{
+        color: 'red',
+        padding: 6
     }
 })
