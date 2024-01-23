@@ -21,6 +21,8 @@ const ProductItem = ({product,navigation}) => {
             source={{uri:product.thumbnail}}
         />
         <Text style={styles.productTitle}>{product.title}</Text>
+        <Text>${product.price}</Text>
+        <Text>{product.format}</Text>
     </TouchableOpacity>
   )
 }

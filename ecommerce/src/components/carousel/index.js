@@ -1,4 +1,4 @@
-import { View, Image, ActivityIndicator } from 'react-native';
+import { View, Image } from 'react-native';
 import React from 'react';
 import Swiper from 'react-native-swiper';
 import { useSelector } from 'react-redux';

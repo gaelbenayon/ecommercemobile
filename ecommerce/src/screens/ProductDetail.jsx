@@ -28,8 +28,8 @@ const ProductDetail = () => {
         isLoading ? <ActivityIndicator /> :
           <View>
             <ScrollView>
-              <Text style={styles.productTitle}>{productSelected.title}</Text>
-              <Text style={styles.productBrand}>{productSelected.brand}</Text>
+              <Text style={styles.productTitle}>{productSelected.artist}</Text>
+              <Text style={styles.productBrand}>{productSelected.title}</Text>
               <Carousel/>
               <View style={styles.detailContainer}>
                 <Text style={styles.productPrice}>${productSelected.price}</Text>

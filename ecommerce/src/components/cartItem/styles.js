@@ -1,24 +1,58 @@
 import { StyleSheet } from "react-native"
+import { colors } from "../../global/colors"
 
 export const styles = StyleSheet.create({
-    cart: {
+    container: {
       display: 'flex',
       flexDirection: 'row',
       marginBottom:15,
-      gap: 20
+      padding:15,
+      backgroundColor: colors.backgroundItem,
+      justifyContent:'space-between'
+
+    },
+    itemContainer:{
+      flexDirection:'row',
+      alignItems:'center'
     },
     cartImage: {
-      height: 50,
-      width: 50,
+      height: 90,
+      width: 90,
       marginRight:20
     },
     infoContainer:{
-      gap: 3
+      rowGap: 10
     },
-    cartTitle: {
-      fontWeight: 'bold'
+    textInfo:{
+      rowGap: 3
+    },
+    title: {
+      fontWeight: 'bold',
+      fontSize: 20
+    },
+    format: {
+      fontStyle: 'italic',
+      opacity: 0.6,
+      fontSize: 12
+    },
+    quantityContainer:{
+      flexDirection:'row',
+      justifyContent: 'center',
+      alignItems:'center',
+      borderColor: 'black',
+      borderWidth: 0.8,
+      gap: 5,
+      paddingHorizontal: 6
     },
     deleteButton: {
       color: 'grey'
+    },
+    columnContainer:{
+      justifyContent: 'space-between',
+      alignItems: 'flex-end'
+    },
+    price:{
+      fontWeight: 'bold',
+      fontSize: 20
     }
   })

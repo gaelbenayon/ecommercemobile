@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         textAlign:'left'
     },
     productImage:{
-       width:'35%',
-       height:100
+       width:120,
+       height:120
     }
 })

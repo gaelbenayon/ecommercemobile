@@ -4,14 +4,14 @@ const {width} = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container:{
-        height:300
+        maxHeight:400
     },
     slide:{
         justifyContent:'center',
         alignItems:'center'
     },
     image:{
-        width: width,
-        height:300
+        width: '100%',
+        height: "100%"
     }
 })

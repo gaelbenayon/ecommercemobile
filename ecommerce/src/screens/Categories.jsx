@@ -1,25 +1,43 @@
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {CategoryItem} from '../components';
-import { useGetCategoriesQuery } from '../services/shopService';
+import { useGetCategoriesQuery, useGetProductsQuery } from '../services/shopService';
+import { useDispatch } from 'react-redux';
+import { setProducts, setCategories } from '../features/shopSlice';
 
 const Categories = ({navigation,route}) => {
 
-    const {data,isLoading,error} = useGetCategoriesQuery();
+    const dispatch = useDispatch();
+
+    const {data:categoriesData,isLoading:isLoadingCategories,error:errorCategories} = useGetCategoriesQuery();
+    const {data:productsData,isLoading:isLoadingProducts,error:errorProducts} = useGetProductsQuery();
 
     const renderCategoryItem = ({item}) => (
         <CategoryItem category={item} navigation={navigation}/>
     )
 
+    const setLocalData = () => {
+        if (categoriesData && !isLoadingCategories) {
+            dispatch(setCategories(categoriesData));
+        }
+        if (productsData && !isLoadingProducts) {
+            dispatch(setProducts(productsData));
+        }
+    }
+
+    useEffect(()=>{
+        setLocalData();
+    },[categoriesData,productsData, dispatch])
+
   return (
     <>
     <View style={styles.categoriesContainer}>
         {
-            isLoading?
+            isLoadingCategories || isLoadingProducts?
             <ActivityIndicator/> :
-            data ? 
+            categoriesData ? 
             <FlatList
-            data={data}
+            data={categoriesData}
             renderItem={renderCategoryItem}
             keyExtractor={item=>item}
             /> :

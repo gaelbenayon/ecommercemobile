@@ -45,7 +45,7 @@ const Cart = ({ navigation }) => {
               keyExtractor={item => item.id}
             />
             <View style={styles.cartInfoContainer}>
-              <Text>Total: ${total}</Text>
+              <Text style={styles.total}>TOTAL: ${total.toFixed(2)}</Text>
               <TouchableOpacity style={styles.cardButton} onPress={onConfirmCartHandler}>
                 <Text style={styles.confirmButton}>Confirmar</Text>
               </TouchableOpacity>
@@ -61,10 +61,14 @@ export default Cart;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    justifyContent: 'center'
+    padding:10
+  },
+  total:{
+    fontWeight:'bold',
+    fontSize: 24
   },
   confirmButton:{
-    color: colors.primary
+    color: colors.primary,
+    fontSize: 20
   }
 })

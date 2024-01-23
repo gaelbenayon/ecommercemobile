@@ -1,6 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit';
-import categories_data from '../data/categories_data.json';
-import products_data from '../data/products_data.json';
 
 export const shopSlice = createSlice({
     name:'shop',
@@ -8,23 +6,29 @@ export const shopSlice = createSlice({
         categorySelected: null,
         productIdSelected: null,
         productSelected: {},
-        categories: categories_data,
-        products: products_data,
+        categories: [],
+        products: [],
         productsFilteredByCategory: [],
     },
     reducers: {
         setCategorySelected: (state, action) => {
-            state.categorySelected = action.payload
-            state.productsFilteredByCategory = state.products.filter(product => product.category === state.categorySelected)
+            state.categorySelected = action.payload;
+            state.productsFilteredByCategory = state.products.filter(product => product.category === state.categorySelected);
         },
         setProductIdSelected: (state, action) => {
-            state.productIdSelected = action.payload
+            state.productIdSelected = action.payload;
         },
         setProductSelected: (state) => {
-            state.productSelected = state.products.find(item=>item.id === state.productIdSelected)
+            state.productSelected = state.products.find(item=>item.id === state.productIdSelected);
+        },
+        setProducts: (state,action) => {
+            state.products = action.payload;
+        },
+        setCategories: (state,action) => {
+            state.categories = action.payload;
         }
     }
 })
 
-export const {setCategorySelected,setProductIdSelected,setProductSelected} = shopSlice.actions;
+export const {setCategorySelected,setProductIdSelected,setProductSelected,setProducts,setCategories} = shopSlice.actions;
 export default shopSlice.reducer;
