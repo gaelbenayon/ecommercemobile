@@ -1,10 +1,10 @@
-import { Text, TouchableOpacity, Image } from 'react-native';
+import { Text, TouchableOpacity, Image, View } from 'react-native';
 import React from 'react';
 import { styles } from './styles';
 import { useDispatch } from 'react-redux';
 import { setProductIdSelected, setProductSelected } from '../../features/shopSlice';
 
-const ProductItem = ({product,navigation}) => {
+const ProductItem = ({ product, navigation }) => {
   const dispatch = useDispatch();
 
   const onSelectProductHandler = () => {
@@ -14,15 +14,20 @@ const ProductItem = ({product,navigation}) => {
   }
 
   return (
-    <TouchableOpacity style={styles.productContainer} onPress={onSelectProductHandler}>
-        <Image 
-            style={styles.productImage}
-            resizeMode={'cover'}
-            source={{uri:product.thumbnail}}
+    <TouchableOpacity style={styles.container} onPress={onSelectProductHandler}>
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.productImage}
+          resizeMode={'cover'}
+          source={{ uri: product.thumbnail }}
         />
-        <Text style={styles.productTitle}>{product.title}</Text>
-        <Text>${product.price}</Text>
-        <Text>{product.format}</Text>
+      </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.title}>{product.title}</Text>
+        <Text style={styles.artist}>{product.artist}</Text>
+        <Text style={styles.format}>{product.format}</Text>
+        <Text style={styles.price}>${product.price}</Text>
+      </View>
     </TouchableOpacity>
   )
 }
