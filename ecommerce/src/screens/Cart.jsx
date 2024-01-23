@@ -11,8 +11,7 @@ const Cart = ({ navigation }) => {
 
   const cartItems = useSelector(state => state.cartReducer.items);
   const total = useSelector(state => state.cartReducer.total);
-  const date = useSelector(state => state.cartReducer.date);
-  const user = useSelector(state => state.authReducer.user);
+  const userId = useSelector(state => state.authReducer.localId);
   const localOrders = useSelector(state => state.ordersReducer.orders);
 
   const dispatch = useDispatch();
@@ -20,9 +19,9 @@ const Cart = ({ navigation }) => {
   const [triggerPostOrder, result] = usePostOrderMutation();
 
   const onConfirmCartHandler = async () => {
-    const { data: newOrderData } = await triggerPostOrder({ total, cartItems, date, user });
+    const { data: newOrderData } = await triggerPostOrder({ total, cartItems, date: Date.now(), userId });
     const orderId = newOrderData.name;
-    const updatedOrders = [...localOrders, { cartItems, total, date, user, orderId }];
+    const updatedOrders = [...localOrders, { cartItems, total, date: Date.now(), userId, orderId }];
     dispatch(setLocalOrders(updatedOrders));
     dispatch(clearCart());
     navigation.navigate('OrdersStack', {screen: 'orders'});

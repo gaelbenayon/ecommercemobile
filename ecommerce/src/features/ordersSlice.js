@@ -8,9 +8,12 @@ export const OrdersSlice = createSlice({
     reducers:{
         setLocalOrders: (state,action) => {
             state.orders = action.payload
+        },
+        clearLocalOrders: (state) => {
+            state.orders = []
         }
     }
 })
 
-export const {setLocalOrders} = OrdersSlice.actions;
+export const {setLocalOrders,clearLocalOrders} = OrdersSlice.actions;
 export default OrdersSlice.reducer;

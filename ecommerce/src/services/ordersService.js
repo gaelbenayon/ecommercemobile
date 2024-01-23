@@ -6,7 +6,7 @@ export const ordersApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: base_url}),
     endpoints: (builder) => ({
         getOrdersByUser: builder.query({
-            query: (user) => `orders.json?orderBy="user"&equalTo="${user}"`
+            query: (userId) => `orders.json?orderBy="userId"&equalTo="${userId}"`
         }),
         postOrder: builder.mutation({
             query: ({...order}) => ({

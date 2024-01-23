@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
     color: 'grey'
   },
   detailContainer:{
-    alignItems:'center'
+    alignItems:'center',
+    paddingHorizontal: 5
   },
   productPrice: {
     padding: 10,

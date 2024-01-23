@@ -12,9 +12,10 @@ const Orders = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.authReducer.user);
+  const userId = useSelector(state => state.authReducer.localId);
   const localOrders = useSelector(state => state.ordersReducer.orders);
 
-  const { data: ordersData, isLoading, error } = useGetOrdersByUserQuery(user);
+  const { data: ordersData, isLoading, error } = useGetOrdersByUserQuery(userId);
 
   useEffect(() => {
     if (!isLoading && ordersData) {
@@ -26,7 +27,7 @@ const Orders = ({ navigation }) => {
       setOrders(ordersWithId);
       dispatch(setLocalOrders(ordersWithId));
     }
-  }, [isLoading, ordersData, user])
+  }, [isLoading, ordersData, user, userId])
 
   useEffect(() => {
     if (localOrders !== orders) {

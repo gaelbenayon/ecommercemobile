@@ -3,6 +3,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOutUser } from '../features/authSlice';
 import { Ionicons } from '@expo/vector-icons';
+import { clearLocalOrders } from '../features/ordersSlice';
+import { clearCart } from '../features/cartSlice';
 
 const Profile = ({ navigation }) => {
 
@@ -13,6 +15,8 @@ const Profile = ({ navigation }) => {
 
     const onLogOutHandler = () => {
         dispatch(logOutUser());
+        dispatch(clearLocalOrders());
+        dispatch(clearCart());
     }
 
     return (

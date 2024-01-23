@@ -1,13 +1,23 @@
-import { FlatList, Image,  Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { styles } from './styles'
-import Separator from '../separator'
+import { FlatList, Image,  Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { styles } from './styles';
+import Separator from '../separator';
+import { useDispatch } from 'react-redux';
+import { setProductIdSelected, setProductSelected } from '../../features/shopSlice';
 
 const OrderItem = ({ orderProp, navigation }) => {
+
+    const dispatch = useDispatch();
+
+    const onSelectProductHandler = (itemIdProp) => {
+        dispatch(setProductIdSelected(itemIdProp));
+        dispatch(setProductSelected());
+        navigation.navigate('ShopStack', {screen: 'detail'});
+      }
     
     const renderOrderProducts = ({ item }) => (
         <View>
-            <TouchableOpacity style={styles.orderContainer} onPress={null}>
+            <TouchableOpacity style={styles.orderContainer} onPress={() => onSelectProductHandler(item.id)}>
                 <Image
                     style={styles.orderImage}
                     source={{ uri: item.thumbnail }}
@@ -23,8 +33,8 @@ const OrderItem = ({ orderProp, navigation }) => {
     return (
         <View style={styles.ordersContainer}>
             <View style={styles.orderInfo}>
-                <Text>Órden: {orderProp.orderId}</Text>
-                <Text>Realizada el {orderProp.date}</Text>
+                <Text>Orden: {orderProp.orderId}</Text>
+                <Text>Realizada el {new Date(orderProp.date).toLocaleDateString()} a las {new Date(orderProp.date).toLocaleTimeString()}</Text>
                 <Text>Total: ${orderProp.total}</Text>
             </View>
 
@@ -38,4 +48,4 @@ const OrderItem = ({ orderProp, navigation }) => {
     )
 }
 
-export default OrderItem
+export default OrderItem;
