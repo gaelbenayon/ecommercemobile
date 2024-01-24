@@ -16,7 +16,7 @@ const ProductsByCategory = ({ navigation }) => {
   useEffect(() => {
     if (!isLoading && productsFilteredByCategory) {
       const productsValues = Object.values(productsFilteredByCategory);
-      const productsFiltered = productsValues.filter(product => product.title.toLowerCase().includes(search.toLowerCase()));
+      const productsFiltered = productsValues.filter(product => (product.title.toLowerCase().includes(search.toLowerCase())) || (product.artist.toLowerCase().includes(search.toLowerCase())));
       setProductsByCategory(productsFiltered);
     }
   }, [isLoading, categorySelected, search])

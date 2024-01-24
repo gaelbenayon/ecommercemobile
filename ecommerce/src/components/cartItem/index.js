@@ -21,7 +21,7 @@ const CartItem = ({ itemProp, navigation }) => {
   }
 
   const onAddQuantityHandler = () => {
-    dispatch(addItem({...itemProp,quantity:1}));
+    dispatch(addItem({ ...itemProp, quantity: 1 }));
   }
 
   const itemPrice = itemProp.price * itemProp.quantity;
@@ -30,13 +30,15 @@ const CartItem = ({ itemProp, navigation }) => {
     <View style={styles.container}>
       <View style={styles.itemContainer}>
 
-        <TouchableOpacity onPress={onSelectProductHandler}>
+        <TouchableOpacity style={styles.imageContainer} onPress={onSelectProductHandler}>
           <Image style={styles.cartImage} source={{ uri: itemProp.thumbnail }} resizeMode='cover' />
         </TouchableOpacity>
 
         <View style={styles.infoContainer}>
           <View style={styles.textInfo}>
-            <Text style={styles.title}>{itemProp.title}</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={styles.title}>{itemProp.title}</Text>
+            </View>
             <Text>{itemProp.artist}</Text>
             <Text style={styles.format}>{itemProp.format}</Text>
           </View>

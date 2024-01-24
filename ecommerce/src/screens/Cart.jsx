@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, SafeAreaView } from 'react-native';
 import React from 'react';
 import { CartItem } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,10 +34,10 @@ const Cart = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {
         cartItems.length < 1 ?
-          <Text>Aún no seleccionaste productos, ¡buscá lo que te gusta y agregalo!</Text> :
+          <Text style={styles.nullCartText}>Aún no seleccionaste productos, ¡buscá lo que te gusta y agregalo!</Text> :
           <>
             <FlatList
               data={cartItems}
@@ -52,8 +52,7 @@ const Cart = ({ navigation }) => {
             </View>
           </>
       }
-
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -61,6 +60,9 @@ export default Cart;
 
 const styles = StyleSheet.create({
   container: {
+    flex:1
+  },
+  nullCartText:{
     padding:10
   },
   total:{
@@ -70,5 +72,8 @@ const styles = StyleSheet.create({
   confirmButton:{
     color: colors.primary,
     fontSize: 20
+  },
+  cartInfoContainer: {
+    padding:10
   }
 })

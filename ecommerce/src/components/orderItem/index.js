@@ -35,7 +35,7 @@ const OrderItem = ({ orderProp, navigation }) => {
             <View style={styles.orderInfo}>
                 <Text>Orden: {orderProp.orderId}</Text>
                 <Text>Realizada el {new Date(orderProp.date).toLocaleDateString()} a las {new Date(orderProp.date).toLocaleTimeString()}</Text>
-                <Text>Total: ${orderProp.total}</Text>
+                <Text>Total: ${orderProp.total.toFixed(2)}</Text>
             </View>
 
             <FlatList

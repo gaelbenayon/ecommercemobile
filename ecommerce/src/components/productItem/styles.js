@@ -17,11 +17,13 @@ export const styles = StyleSheet.create({
         width: '100%',
         alignItems:'center',
         paddingVertical:15,
+        paddingHorizontal:10,
         backgroundColor: colors.backgroundItem
     },
     title: {
         fontWeight:'bold',
-        fontSize: 24
+        fontSize: 24,
+        textAlign:'center'
     },
     artist:{
         fontFamily: 'Lato-Regular'
