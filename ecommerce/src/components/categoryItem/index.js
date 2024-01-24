@@ -3,21 +3,24 @@ import React from 'react';
 import { styles } from './styles';
 import Card from '../card';
 import { useDispatch } from 'react-redux';
-import { setCategorySelected } from '../../features/shopSlice';
+import { setGenreSelected } from '../../features/shopSlice';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { colors } from '../../global/colors';
 
-const CategoryItem = ({category,navigation}) => {
+const CategoryItem = ({ category, navigation }) => {
   const dispatch = useDispatch();
 
   const handleOnSelectCategory = () => {
-    dispatch(setCategorySelected(category));
-    navigation.navigate('products',category);
+    dispatch(setGenreSelected(category));
+    navigation.navigate('products', category);
   }
-  
+
   return (
     <TouchableOpacity onPress={handleOnSelectCategory}>
-        <Card style={styles.cardContainer}>
-            <Text style={styles.cardText}>{category}</Text>
-        </Card>
+      <Card style={styles.cardContainer}>
+        <MaterialCommunityIcons name="music-circle" size={24} color={colors.primary} />
+        <Text style={styles.cardText}>{category}</Text>
+      </Card>
     </TouchableOpacity>
   )
 }

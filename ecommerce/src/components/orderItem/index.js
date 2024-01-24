@@ -24,7 +24,7 @@ const OrderItem = ({ orderProp, navigation }) => {
                 />
                 <View>
                     <Text>{item.title}</Text>
-                    <Text>{item.quantity} x ${item.price}</Text>
+                    <Text>{item.quantity} x ${item.price.toFixed(2)}</Text>
                 </View>
             </TouchableOpacity>
         </View>

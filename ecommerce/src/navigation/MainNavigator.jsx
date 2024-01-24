@@ -15,8 +15,8 @@ const MainNavigator = () => {
     const {data, isLoading, error} = useGetProfilePictureQuery(localId);
 
     useEffect(()=>{
-        if (data && !isLoading) {
-            dispatch(setUserProfilePicture(data.image))
+        if (data && !isLoading && !error) {
+            dispatch(setUserProfilePicture(data.image));
         }
     },[data,user,localId])
 

@@ -1,6 +1,5 @@
-import { StyleSheet, Dimensions } from "react-native";
-
-const {width} = Dimensions.get('window');
+import { StyleSheet } from "react-native";
+import {colors} from '../../global/colors';
 
 export const styles = StyleSheet.create({
     container:{
@@ -13,5 +12,12 @@ export const styles = StyleSheet.create({
     image:{
         width: '100%',
         height: "100%"
+    },
+    swiperStyle:{
+        backgroundColor: '#fff'
+    },
+    buttonText:{
+        fontSize: 60,
+        color: '#fff'
     }
 })

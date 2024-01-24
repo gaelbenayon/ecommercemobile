@@ -3,17 +3,17 @@ import {createSlice} from '@reduxjs/toolkit';
 export const shopSlice = createSlice({
     name:'shop',
     initialState:{
-        categorySelected: null,
+        genreSelected: null,
         productIdSelected: null,
         productSelected: {},
-        categories: [],
+        genres: [],
         products: [],
-        productsFilteredByCategory: [],
+        productsFilteredByGenre: [],
     },
     reducers: {
-        setCategorySelected: (state, action) => {
-            state.categorySelected = action.payload;
-            state.productsFilteredByCategory = state.products.filter(product => product.category === state.categorySelected);
+        setGenreSelected: (state, action) => {
+            state.genreSelected = action.payload;
+            state.productsFilteredByGenre = state.products.filter(product => product.genre === state.genreSelected);
         },
         setProductIdSelected: (state, action) => {
             state.productIdSelected = action.payload;
@@ -24,11 +24,11 @@ export const shopSlice = createSlice({
         setProducts: (state,action) => {
             state.products = action.payload;
         },
-        setCategories: (state,action) => {
-            state.categories = action.payload;
+        setGenres: (state,action) => {
+            state.genres = action.payload;
         }
     }
 })
 
-export const {setCategorySelected,setProductIdSelected,setProductSelected,setProducts,setCategories} = shopSlice.actions;
+export const {setGenreSelected,setProductIdSelected,setProductSelected,setProducts,setGenres} = shopSlice.actions;
 export default shopSlice.reducer;

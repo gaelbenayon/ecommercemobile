@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 
 const ShopNavigator = () => {
 
-    const categorySelected = useSelector(state => state.shopReducer.categorySelected);
+    const genreSelected = useSelector(state => state.shopReducer.genreSelected);
 
     return (
 
@@ -19,7 +19,7 @@ const ShopNavigator = () => {
                     ({navigation,route}) => ({
                         header: () => <Header 
                         title={
-                            route.name === "categories" ? "Categorías" : route.name === "products" ? categorySelected : "detail" ? "Mi selección" : null
+                            route.name === "categories" ? "Categorías" : route.name === "products" ? genreSelected : "detail" ? "Mi selección" : null
                         } 
                         navigation={navigation}
                         route={route}/>

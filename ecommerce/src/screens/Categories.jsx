@@ -1,15 +1,15 @@
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import React, { useEffect } from 'react';
 import {CategoryItem} from '../components';
-import { useGetCategoriesQuery, useGetProductsQuery } from '../services/shopService';
+import { useGetGenresQuery, useGetProductsQuery } from '../services/shopService';
 import { useDispatch } from 'react-redux';
-import { setProducts, setCategories } from '../features/shopSlice';
+import { setProducts, setGenres } from '../features/shopSlice';
 
-const Categories = ({navigation,route}) => {
+const Categories = ({navigation}) => {
 
     const dispatch = useDispatch();
 
-    const {data:categoriesData,isLoading:isLoadingCategories,error:errorCategories} = useGetCategoriesQuery();
+    const {data:genresData,isLoading:isLoadingGenres,error:errorGenres} = useGetGenresQuery();
     const {data:productsData,isLoading:isLoadingProducts,error:errorProducts} = useGetProductsQuery();
 
     const renderCategoryItem = ({item}) => (
@@ -17,34 +17,32 @@ const Categories = ({navigation,route}) => {
     )
 
     const setLocalData = () => {
-        if (categoriesData && !isLoadingCategories) {
-            dispatch(setCategories(categoriesData));
+        if (genresData && !isLoadingGenres && !errorGenres) {
+            dispatch(setGenres(genresData));
         }
-        if (productsData && !isLoadingProducts) {
+        if (productsData && !isLoadingProducts && !errorProducts) {
             dispatch(setProducts(productsData));
         }
     }
 
     useEffect(()=>{
         setLocalData();
-    },[categoriesData,productsData, dispatch])
+    },[genresData,productsData, dispatch])
 
   return (
-    <>
     <View style={styles.categoriesContainer}>
         {
-            isLoadingCategories || isLoadingProducts?
+            isLoadingGenres || isLoadingProducts?
             <ActivityIndicator/> :
-            categoriesData ? 
+            genresData ? 
             <FlatList
-            data={categoriesData}
+            data={genresData}
             renderItem={renderCategoryItem}
             keyExtractor={item=>item}
             /> :
             null
         }
     </View>
-    </>
   )
 }
 

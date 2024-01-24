@@ -2,24 +2,24 @@ import { ActivityIndicator, FlatList, Text } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { ProductItem, Search } from '../components';
 import { useSelector } from 'react-redux';
-import { useGetProductsByCategoryQuery } from '../services/shopService';
+import { useGetProductsByGenreQuery } from '../services/shopService';
 
 const ProductsByCategory = ({ navigation }) => {
 
   const [productsByCategory, setProductsByCategory] = useState([]);
   const [search, setSearch] = useState('');
 
-  const categorySelected = useSelector(state => state.shopReducer.categorySelected);
+  const genreSelected = useSelector(state => state.shopReducer.genreSelected);
 
-  const { data: productsFilteredByCategory, isLoading, error } = useGetProductsByCategoryQuery(categorySelected);
+  const { data: productsFilteredByGenre, isLoading, error } = useGetProductsByGenreQuery(genreSelected);
 
   useEffect(() => {
-    if (!isLoading && productsFilteredByCategory) {
-      const productsValues = Object.values(productsFilteredByCategory);
+    if (!isLoading && productsFilteredByGenre && !error) {
+      const productsValues = Object.values(productsFilteredByGenre);
       const productsFiltered = productsValues.filter(product => (product.title.toLowerCase().includes(search.toLowerCase())) || (product.artist.toLowerCase().includes(search.toLowerCase())));
       setProductsByCategory(productsFiltered);
     }
-  }, [isLoading, categorySelected, search])
+  }, [isLoading, genreSelected, search])
 
   const renderProductItem = ({ item }) => {
     return (
@@ -39,7 +39,7 @@ const ProductsByCategory = ({ navigation }) => {
         isLoading ?
           <ActivityIndicator /> :
           <>
-            <Search onSearchHandlerEvent={onSearch} category={categorySelected} />
+            <Search onSearchHandlerEvent={onSearch} category={genreSelected} />
             <FlatList
               data={productsByCategory}
               renderItem={renderProductItem}

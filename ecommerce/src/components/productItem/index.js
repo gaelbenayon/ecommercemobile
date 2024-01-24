@@ -26,7 +26,7 @@ const ProductItem = ({ product, navigation }) => {
         <Text style={styles.title}>{product.title}</Text>
         <Text style={styles.artist}>{product.artist}</Text>
         <Text style={styles.format}>{product.format}</Text>
-        <Text style={styles.price}>${product.price}</Text>
+        <Text style={styles.price}>${product.price.toFixed(2)}</Text>
       </View>
     </TouchableOpacity>
   )
