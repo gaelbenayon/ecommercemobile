@@ -30,6 +30,7 @@ const ImageSelector = ({ navigation }) => {
             })
             if (!result.canceled) {
                 setImage(`data:image/jpeg;base64,${result.assets[0].base64}`);
+                setError("");
             } else {
                 setError("La operación fue cancelada");
             }
@@ -73,11 +74,12 @@ const ImageSelector = ({ navigation }) => {
                         </View>
                         {error && <Text style={styles.errorText}>{error}</Text>}
                     </View> :
-                    <View>
+                    <View style={styles.noImageContainer}>
                         <MaterialIcons name='no-photography' size={200} color='black' />
                         <TouchableOpacity onPress={onPickImageHandler} style={styles.button}>
                             <Text>Tomar una foto</Text>
                         </TouchableOpacity>
+                        {error && <Text style={styles.errorText}>{error}</Text>}
                     </View>
             }
         </View>
@@ -110,5 +112,8 @@ const styles = StyleSheet.create({
     errorText:{
         color: 'red',
         padding: 6
+    },
+    noImageContainer:{
+        alignItems:'center'
     }
 })

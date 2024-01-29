@@ -2,7 +2,7 @@ import { View, Text, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
 
-const Input = ({label, isSecureEntry = false, error="", onChange}) => {
+const Input = ({label, isSecureEntry, error, onChange}) => {
   const [input, setInput] = useState();
 
   const onChangeTextHandler = (text) => {

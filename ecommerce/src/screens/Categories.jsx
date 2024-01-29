@@ -12,9 +12,7 @@ const Categories = ({navigation}) => {
     const {data:genresData,isLoading:isLoadingGenres,error:errorGenres} = useGetGenresQuery();
     const {data:productsData,isLoading:isLoadingProducts,error:errorProducts} = useGetProductsQuery();
 
-    const renderCategoryItem = ({item}) => (
-        <CategoryItem category={item} navigation={navigation}/>
-    )
+    const renderCategoryItem = ({item}) => (<CategoryItem category={item} navigation={navigation}/>);
 
     const setLocalData = () => {
         if (genresData && !isLoadingGenres && !errorGenres) {

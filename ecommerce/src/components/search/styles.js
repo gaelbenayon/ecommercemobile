@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     searchContainer: {
@@ -10,8 +10,9 @@ export const styles = StyleSheet.create({
         flexDirection:'row'
     },
     searchErrorText:{
-        paddingHorizontal:5,
+        padding:3,
         color:'grey',
-        fontWeight:'bold'
+        fontWeight:'bold',
+        fontSize:10
     }
 })

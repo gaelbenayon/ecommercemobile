@@ -3,7 +3,7 @@ import React from 'react';
 import { styles } from './styles';
 import { Ionicons } from '@expo/vector-icons';
 
-const Header = ({ title, navigation, route }) => {
+const Header = ({ title, navigation }) => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerTitle}>{title}</Text>

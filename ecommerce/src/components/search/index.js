@@ -10,7 +10,7 @@ const Search = ({ onSearchHandlerEvent, category }) => {
     const [searchError,setSearchError] = useState('');
 
     const onSearchHandler = () => {
-        const regEx = /[^\w\s]/
+        const regEx = /[^\w\sñ]/
         if (regEx.test(searchInput)) {
             setSearchError('Sólo se admiten letras y números');
             setSearchInput('');
@@ -33,6 +33,7 @@ const Search = ({ onSearchHandlerEvent, category }) => {
                 value={searchInput}
                 onChangeText={setSearchInput}
                 placeholder={`Buscar en ${category}`}
+                onSubmitEditing={onSearchHandler}
             />
             <View style={styles.buttonsContainer}>
                 <TouchableOpacity onPress={() => onSearchHandler(searchInput)}>

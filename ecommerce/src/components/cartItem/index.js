@@ -16,21 +16,16 @@ const CartItem = ({ itemProp, navigation }) => {
     navigation.navigate('detail');
   }
 
-  const onDeleteCartProductHandler = () => {
-    dispatch(removeItem(itemProp.id));
-  }
+  const onDeleteCartProductHandler = () => {dispatch(removeItem(itemProp.id))};
 
-  const onAddQuantityHandler = () => {
-    dispatch(addItem({ ...itemProp, quantity: 1 }));
-  }
+  const onAddQuantityHandler = () => {dispatch(addItem({ ...itemProp, quantity: 1 }))};
 
   const itemPrice = itemProp.price * itemProp.quantity;
 
   return (
     <View style={styles.container}>
       <View style={styles.itemContainer}>
-
-        <TouchableOpacity style={styles.imageContainer} onPress={onSelectProductHandler}>
+        <TouchableOpacity onPress={onSelectProductHandler}>
           <Image style={styles.cartImage} source={{ uri: itemProp.thumbnail }} resizeMode='cover' />
         </TouchableOpacity>
 
@@ -49,9 +44,7 @@ const CartItem = ({ itemProp, navigation }) => {
               <Ionicons name="add-sharp" size={24} color="black" />
             </TouchableOpacity>
           </View>
-
         </View>
-
       </View>
 
       <View style={styles.columnContainer}>

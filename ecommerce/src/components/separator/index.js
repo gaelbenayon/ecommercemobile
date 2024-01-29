@@ -1,19 +1,7 @@
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
+import { styles } from './style';
 
-const Separator = () => {
-  return (
-    <View style={styles.separator}>
-    </View>
-  )
-}
+const Separator = () => (<View style={styles.separator}></View>);
 
-export default Separator
-
-export const styles = StyleSheet.create({
-    separator: {
-        height: 1,
-        width: '100%',
-        backgroundColor: '#ddd'
-    }
-})
+export default Separator;

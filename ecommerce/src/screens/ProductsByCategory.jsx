@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, Text } from 'react-native';
+import { ActivityIndicator, FlatList, Text, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { ProductItem, Search } from '../components';
 import { useSelector } from 'react-redux';
@@ -21,17 +21,9 @@ const ProductsByCategory = ({ navigation }) => {
     }
   }, [isLoading, genreSelected, search])
 
-  const renderProductItem = ({ item }) => {
-    return (
-      <ProductItem product={item} navigation={navigation} />
-    )
-  }
+  const renderProductItem = ({ item }) => (<ProductItem product={item} navigation={navigation} />);
 
-  const onSearch = (search) => {
-    return (
-      setSearch(search)
-    )
-  }
+  const onSearch = (search) => {setSearch(search)};
 
   return (
     <>
@@ -40,11 +32,16 @@ const ProductsByCategory = ({ navigation }) => {
           <ActivityIndicator /> :
           <>
             <Search onSearchHandlerEvent={onSearch} category={genreSelected} />
-            <FlatList
-              data={productsByCategory}
-              renderItem={renderProductItem}
-              keyExtractor={item => item.id}
-            />
+            {
+              productsByCategory.length ?
+                <FlatList
+                  data={productsByCategory}
+                  renderItem={renderProductItem}
+                  keyExtractor={item => item.id}
+                /> :
+                <Text style={styles.noResultsText}>No hay resultados para "{search}"</Text>
+            }
+
           </>
       }
     </>
@@ -52,3 +49,9 @@ const ProductsByCategory = ({ navigation }) => {
 }
 
 export default ProductsByCategory;
+
+const styles = StyleSheet.create({
+  noResultsText:{
+    padding: 10
+  }
+})

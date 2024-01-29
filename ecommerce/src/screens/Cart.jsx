@@ -28,15 +28,9 @@ const Cart = ({ navigation }) => {
     navigation.navigate('OrdersStack', { screen: 'orders' });
   }
 
-  const onClearCartHandler = () => {
-    dispatch(clearCart());
-  }
+  const onClearCartHandler = () => {dispatch(clearCart())};
 
-  const renderCartItem = ({ item }) => {
-    return (
-      <CartItem itemProp={item} navigation={navigation} />
-    )
-  }
+  const renderCartItem = ({ item }) => (<CartItem itemProp={item} navigation={navigation} />);
 
   return (
     <SafeAreaView style={styles.container}>

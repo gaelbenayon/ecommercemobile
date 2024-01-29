@@ -35,22 +35,13 @@ const Orders = ({ navigation }) => {
     }
   }, [localOrders])
 
-  const renderOrderItem = ({ item }) => {
-    return (
-      <OrderItem orderProp={item} navigation={navigation} />
-    )
-  }
-
-  if (error) {
-    console.log("Error: ", error);
-    return <Text>Error al obtener las órdenes</Text>
-  }
+  const renderOrderItem = ({ item }) => (<OrderItem orderProp={item} navigation={navigation} />);
 
   return (
     <View style={styles.ordersContainer}>
+      {error && <Text>Error al obtener las órdenes</Text>}
       {
-        isLoading ?
-          <ActivityIndicator /> :
+        isLoading ? <ActivityIndicator /> :
           orders.length < 1 ?
             <Text>No hay órdenes realizadas</Text> :
             <FlatList

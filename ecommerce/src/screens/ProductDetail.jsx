@@ -2,9 +2,8 @@ import { ActivityIndicator, StyleSheet, Text, View, ScrollView, TouchableOpacity
 import React, { useEffect, useState } from 'react';
 import { colors } from '../global/colors';
 import { useSelector, useDispatch } from 'react-redux';
-import Carousel from '../components/carousel';
+import { Carousel, Card } from '../components';
 import { addItem } from '../features/cartSlice';
-import Card from '../components/card';
 
 const ProductDetail = ({navigation}) => {
 
@@ -21,7 +20,7 @@ const ProductDetail = ({navigation}) => {
 
   const onAddToCartHandler = () => {
     dispatch(addItem({ ...productSelected, quantity: 1 }));
-    navigation.navigate('CartStack',{screen:'cart'})
+    navigation.navigate('CartStack',{screen:'cart'});
   }
 
   return (

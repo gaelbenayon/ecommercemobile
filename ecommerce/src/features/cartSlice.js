@@ -10,9 +10,10 @@ export const cartSlice = createSlice({
         addItem: (state,action) => {
             const isProductInCart = state.items.find(item=>item.id === action.payload.id);
             if (!isProductInCart) {
-                state.items.push(action.payload);
-                const total = state.items.reduce((acc,currentItem) => acc+= currentItem.price*currentItem.quantity,0);
+                const updatedItems = [...state.items,action.payload]
+                const total = updatedItems.reduce((acc,currentItem) => acc+= currentItem.price*currentItem.quantity,0);
                 state.total = total;
+                state.items = updatedItems;
             } else {
                 const itemsUpdated = state.items.map(item=>{
                     if(item.id===action.payload.id) {

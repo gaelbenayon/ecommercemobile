@@ -12,7 +12,7 @@ const CategoryItem = ({ category, navigation }) => {
 
   const handleOnSelectCategory = () => {
     dispatch(setGenreSelected(category));
-    navigation.navigate('products', category);
+    navigation.navigate('products');
   }
 
   return (

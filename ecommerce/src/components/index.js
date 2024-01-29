@@ -7,3 +7,4 @@ export {default as OrderItem} from './orderItem';
 export {default as CartItem} from './cartItem';
 export {default as Input} from './input';
 export {default as Separator} from './separator';
+export {default as Carousel} from './carousel';

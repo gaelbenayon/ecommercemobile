@@ -21,7 +21,7 @@ const Login = ({ navigation }) => {
     if (email && password) {
       triggerLogIn({ email, password });
     } else {
-      setError("Por favor, complete todos los campos")
+      setError("Por favor, complete todos los campos");
     }
   }
 
@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
         email: result.data.email,
         token: result.data.idToken
       })
-      .catch(error => console.log("Error al insertar sesión en la DB: ",error.message))
+      .catch(error => console.log("Error al insertar sesión en la DB: ",error.message));
     }
   }, [result])
 
