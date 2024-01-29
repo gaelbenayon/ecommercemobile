@@ -6,21 +6,35 @@ import { colors } from '../global/colors';
 import { useDispatch } from 'react-redux';
 import { useLogInMutation } from '../services/authService';
 import { setUser } from '../features/authSlice';
+import { insertDbSession } from '../db';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const [error, setError] = useState("");
 
   const [triggerLogIn, result] = useLogInMutation();
 
   const dispatch = useDispatch();
 
   const onSubmitLogInHandler = () => {
-    triggerLogIn({ email, password });
+    if (email && password) {
+      triggerLogIn({ email, password });
+    } else {
+      setError("Por favor, complete todos los campos")
+    }
   }
 
   useEffect(() => {
-    result.data && dispatch(setUser(result.data));
+    if (result.data) {
+      dispatch(setUser(result.data));
+      insertDbSession({
+        localId: result.data.localId,
+        email: result.data.email,
+        token: result.data.idToken
+      })
+      .catch(error => console.log("Error al insertar sesión en la DB: ",error.message))
+    }
   }, [result])
 
   return (
@@ -34,6 +48,7 @@ const Login = ({ navigation }) => {
         onChange={setPassword}
         isSecureEntry={true}
       />
+      {error && <Text style={styles.errorText}>{error}</Text>}
       <TouchableOpacity onPress={onSubmitLogInHandler}>
         <Text style={styles.logInSubmit}>Iniciar sesión</Text>
       </TouchableOpacity>
@@ -64,5 +79,9 @@ const styles = StyleSheet.create({
   signUpText: {
     textAlign: 'center',
     color: colors.primary
+  },
+  errorText: {
+    color: 'red',
+    paddingTop: 20
   }
 })

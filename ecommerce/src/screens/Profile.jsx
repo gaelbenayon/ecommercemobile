@@ -5,11 +5,13 @@ import { logOutUser } from '../features/authSlice';
 import { Ionicons } from '@expo/vector-icons';
 import { clearLocalOrders } from '../features/ordersSlice';
 import { clearCart } from '../features/cartSlice';
+import { deleteDbSession } from '../db';
 
 const Profile = ({ navigation }) => {
 
     const localImage = useSelector(state => state.authReducer.profilePicture);
     const user = useSelector(state => state.authReducer.user);
+    const localId = useSelector(state => state.authReducer.localId);
 
     const dispatch = useDispatch();
 
@@ -17,6 +19,7 @@ const Profile = ({ navigation }) => {
         dispatch(logOutUser());
         dispatch(clearLocalOrders());
         dispatch(clearCart());
+        deleteDbSession(localId);
     }
 
     return (

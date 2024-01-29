@@ -6,6 +6,7 @@ import { usePostOrderMutation } from '../services/ordersService';
 import { clearCart } from '../features/cartSlice';
 import { setLocalOrders } from '../features/ordersSlice';
 import { colors } from '../global/colors';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Cart = ({ navigation }) => {
 
@@ -24,7 +25,11 @@ const Cart = ({ navigation }) => {
     const updatedOrders = [...localOrders, { cartItems, total, date: Date.now(), userId, orderId }];
     dispatch(setLocalOrders(updatedOrders));
     dispatch(clearCart());
-    navigation.navigate('OrdersStack', {screen: 'orders'});
+    navigation.navigate('OrdersStack', { screen: 'orders' });
+  }
+
+  const onClearCartHandler = () => {
+    dispatch(clearCart());
   }
 
   const renderCartItem = ({ item }) => {
@@ -45,9 +50,14 @@ const Cart = ({ navigation }) => {
               keyExtractor={item => item.id}
             />
             <View style={styles.cartInfoContainer}>
-              <Text style={styles.total}>TOTAL: ${total.toFixed(2)}</Text>
-              <TouchableOpacity style={styles.cardButton} onPress={onConfirmCartHandler}>
-                <Text style={styles.confirmButton}>Confirmar</Text>
+              <View>
+                <Text style={styles.total}>TOTAL: ${total.toFixed(2)}</Text>
+                <TouchableOpacity onPress={onConfirmCartHandler}>
+                  <Text style={styles.confirmButton}>Confirmar</Text>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity onPress={onClearCartHandler}>
+                  <MaterialIcons style={styles.deleteButton} name="remove-shopping-cart" size={28} color="black" />
               </TouchableOpacity>
             </View>
           </>
@@ -60,20 +70,26 @@ export default Cart;
 
 const styles = StyleSheet.create({
   container: {
-    flex:1
+    flex: 1
   },
-  nullCartText:{
-    padding:10
+  nullCartText: {
+    padding: 10
   },
-  total:{
-    fontWeight:'bold',
+  total: {
+    fontWeight: 'bold',
     fontSize: 24
   },
-  confirmButton:{
+  confirmButton: {
     color: colors.primary,
     fontSize: 20
   },
+  deleteButton:{
+    color: colors.primary
+  },
   cartInfoContainer: {
-    padding:10
+    padding: 10,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'flex-end'
   }
 })
