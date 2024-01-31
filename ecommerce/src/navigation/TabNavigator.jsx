@@ -1,15 +1,27 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { Entypo, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import CartNavigator from "./CartNavigator";
 import ShopNavigator from "./ShopNavigator";
 import OrdersNavigator from "./OrdersNavigator";
 import { colors } from "../global/colors";
 import ProfileNavigator from "./ProfileNavigator";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+
+    const [cartQuantity, setCartQuantity] = useState(null);
+
+    const localCart = useSelector(state => state.cartReducer.items);
+
+    useEffect(()=>{
+        const cartQuantity = localCart.reduce((acc,item) => acc += item.quantity,0);
+        setCartQuantity(cartQuantity);
+    },[localCart])
+
     return (
         <Tab.Navigator
             screenOptions={{
@@ -32,7 +44,14 @@ const TabNavigator = () => {
                 component={CartNavigator}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <AntDesign name="shoppingcart" size={24} color={focused ? "#fff" : "#ccc"} />
+                        <View style={{flexDirection:'row',gap:5}}>
+                            <AntDesign name="shoppingcart" size={24} color={focused ? "#fff" : "#ccc"} />
+                            {
+                            localCart.length > 0 &&
+                            <Text style={{color:focused ? "#fff" : "#ccc"}}>{cartQuantity}</Text>
+                            }
+                        </View>
+                        
                     )
                 }}
             />

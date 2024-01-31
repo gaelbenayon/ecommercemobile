@@ -23,7 +23,7 @@ const MainNavigator = () => {
         if (data && !isPictureLoading && !error) {
             dispatch(setUserProfilePicture(data.image));
         }
-    },[data,user,localId])
+    },[data,user,localId,isPictureLoading, dispatch])
 
     useEffect(()=>{
         (async ()=>{
