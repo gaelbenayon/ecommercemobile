@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input } from '../components';
 import { colors } from '../global/colors';
 import { useDispatch } from 'react-redux';

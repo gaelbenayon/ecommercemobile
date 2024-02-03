@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native';
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from '../components';
 import { colors } from '../global/colors';
 import {useSignUpMutation} from '../services/authService';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../features/authSlice';
+import { insertDbSession } from '../db';
 
 const SignUp = ({navigation}) => {
 
@@ -16,6 +16,8 @@ const SignUp = ({navigation}) => {
 
   const [triggerSignUp,result] = useSignUpMutation();
 
+  const dispatch = useDispatch();
+
   const onSubmitRegisterHandler = () => {
     if (email, password, confirmPassword) {
       triggerSignUp({ email, password });
@@ -24,10 +26,16 @@ const SignUp = ({navigation}) => {
     }
   }
 
-  const dispatch = useDispatch();
-
   useEffect(()=>{
-    result.data && dispatch(setUser(result.data));
+    if (result.data) {
+      dispatch(setUser(result.data));
+      insertDbSession({
+        localId: result.data.localId,
+        email: result.data.email,
+        token: result.data.idToken
+      })
+      .catch(error => console.log("Error al insertar sesión en la DB: ",error.message));
+    }
   },[result])
   
   return (
